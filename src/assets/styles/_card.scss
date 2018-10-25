@@ -1,0 +1,30 @@
+@import './variables';
+@import './mixins';
+
+.o-card {
+  @include box-elevation;
+  padding: 32px;
+  background-color: $color-white;
+  border-radius: 2px;
+  width: 350px;
+
+  &__header {
+    text-align: center;
+    font-family: 'Dancing Script', cursive;
+    font-size: 54px;
+    letter-spacing: 1px;
+  }
+
+  &__message {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+    font-size: 12px;
+  }
+
+  &__check {
+    color: $color-green-a700;
+    font-size: 56px;
+    margin-right: 8px;
+  }
+}

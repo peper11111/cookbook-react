@@ -1,0 +1,40 @@
+@import './variables';
+@import './mixins';
+
+.o-page {
+  padding-top: $navbar-height;
+  color: $color-text-primary;
+  background-color: $color-white;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+
+  &--intro {
+    margin-top: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('../images/dan-gold-105699-unsplash.jpg') no-repeat center;
+    background-size: cover;
+  }
+
+  &__wrapper {
+    width: 1000px;
+    margin: 16px auto 64px auto;
+
+    &--top {
+      margin-top: 0;
+    }
+  }
+
+  &__separator {
+    height: 1px;
+    background: linear-gradient(to right, transparent, $color-accent 20%, $color-accent 80%, transparent);
+    margin: 32px 0;
+    box-sizing: border-box;
+
+    &--intro {
+      margin: 16px 0;
+    }
+  }
+}
