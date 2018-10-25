@@ -3919,6 +3919,11 @@ https-browserify@^1.0.0:
   resolved "https://registry.yarnpkg.com/https-browserify/-/https-browserify-1.0.0.tgz#ec06c10e0a34c0f2faf199f7fd7fc78fffd03c73"
   integrity sha1-7AbBDgo0wPL68Zn3/X/Hj//QPHM=
 
+i18next@^12.0.0:
+  version "12.0.0"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-12.0.0.tgz#27c1494219dde0451a8d714d5bfc19bf055d51bb"
+  integrity sha512-Zy/nFpmBZxgmi6k9HkHbf+MwvAwiY5BDzNjNfvyLPKyalc2YBwwZtblESDlTKLDO8XSv23qYRY2uZcADDlRSjQ==
+
 iconv-lite@0.4.19, iconv-lite@^0.4.17, iconv-lite@~0.4.13:
   version "0.4.19"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.19.tgz#f7468f60135f5e5dad3399c0a81be9a1603a082b"
