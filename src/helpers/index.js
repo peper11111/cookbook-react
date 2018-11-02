@@ -7,6 +7,6 @@ export default {
       const match = matchPath(pathname, route)
       return match && match.exact
     })
-    return matched && matched.meta && matched.meta.requiresAuth
+    return !!(matched && matched.meta && matched.meta.requiresAuth)
   }
 }
