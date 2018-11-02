@@ -26,9 +26,8 @@ class SignInPage extends React.Component {
       return this.$helpers.fetchGlobalData()
     }).then(() => {
       this.$notify.success('sign-in-successful')
-      const history = this.props.history
-      const query = queryString.parse(history.location.search)
-      history.push(query.redirect || '/')
+      const query = queryString.parse(this.props.history.location.search)
+      this.props.history.push(query.redirect || '/')
     })
   }
   render () {
@@ -63,7 +62,7 @@ class SignInPage extends React.Component {
               />
               <div
                 className={ `o-form__icon o-form__icon--toggle ${this.state.passwordVisible ? 'is-active' : ''}` }
-                onClick={ this.togglePassword }
+                onClick={ () => this.togglePassword() }
               >
                 <i className="material-icons">
                   { this.state.passwordVisible ? 'visibility' : 'visibility_off' }
@@ -97,4 +96,4 @@ class SignInPage extends React.Component {
   }
 }
 
-export default requester(form(withRouter(SignInPage)))
+export default form(requester(withRouter(SignInPage)))
