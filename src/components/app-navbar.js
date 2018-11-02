@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import NavbarUser from '@/components/navbar/navbar-user'
 import '@/components/app-navbar.scss'
 
 class AppNavbar extends React.Component {
@@ -45,6 +46,8 @@ class AppNavbar extends React.Component {
               book
             </i>
           </Link>
+          <div className="c-app-navbar__separator"/>
+          <NavbarUser/>
         </div>
       </nav>
     )
