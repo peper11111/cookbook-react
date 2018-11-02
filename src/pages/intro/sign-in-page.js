@@ -97,4 +97,4 @@ class SignInPage extends React.Component {
   }
 }
 
-export default withRouter(requester(form(SignInPage)))
+export default requester(form(withRouter(SignInPage)))

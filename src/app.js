@@ -1,8 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Redirect, Route, Router, Switch } from 'react-router-dom'
-import history from '@/router/history'
-import routes from '@/router/routes'
+import { withRouter } from 'react-router-dom'
+import RouterView from '@/router'
 import requester from '@/hoc/requester'
 import AppNavbar from '@/components/app-navbar'
 
@@ -15,7 +14,7 @@ class App extends React.Component {
     this.wrap = this.props.wrap.bind(this)
   }
   get requiresAuth () {
-    return this.$helpers.requiresAuth(history.location.pathname)
+    return this.$helpers.requiresAuth(this.props.history.location.pathname)
   }
   componentDidMount () {
     // Because history.listen is not called on app start
@@ -25,30 +24,17 @@ class App extends React.Component {
     }
   }
   render () {
-    return (
-      <div className="o-typography">
-        { !this.state.pending &&
-          <Router history={ history }>
-            <React.Fragment>
-              { this.requiresAuth &&
-                <AppNavbar/>
-              }
-              <Switch>
-                { routes.map((route) => (
-                  <Route
-                    exact
-                    key={ route.path }
-                    path={ route.path }
-                    component={ route.component }
-                  />
-                )) }
-                <Redirect to="/"/>
-              </Switch>
-            </React.Fragment>
-          </Router>
-        }
-      </div>
-    )
+    if (!this.state.pending) {
+      return (
+        <div className="o-typography">
+          { this.requiresAuth &&
+            <AppNavbar/>
+          }
+          <RouterView/>
+        </div>
+      )
+    }
+    return (null)
   }
 }
 
@@ -56,4 +42,4 @@ const mapStateToProps = (state) => ({
   loggedIn: state.auth.loggedIn
 })
 
-export default requester(connect(mapStateToProps)(App))
+export default requester(withRouter(connect(mapStateToProps)(App)))
