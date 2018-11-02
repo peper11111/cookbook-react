@@ -17,7 +17,7 @@ class App extends React.Component {
     return this.$helpers.requiresAuth(this.props.history.location.pathname)
   }
   componentDidMount () {
-    // Because history.listen is not called on app start
+    // Because history listener is not called on app start
     this.$helpers.checkNavigation()
     if (this.props.loggedIn) {
       this.wrap(this.$api.users.current())
