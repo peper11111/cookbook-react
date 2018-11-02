@@ -1,7 +1,5 @@
 import React from 'react'
 import { Provider } from 'react-redux'
-import api from '@/api'
-import helpers from '@/helpers'
 import RouterView from '@/router'
 import store from '@/store'
 import requester from '@/hoc/requester'
@@ -19,9 +17,9 @@ class App extends React.Component {
   }
   componentDidMount () {
     // Because history.listen is not called on app start
-    helpers.checkNavigation()
+    this.$helpers.checkNavigation()
     if (this.loggedIn) {
-      this.wrap(api.users.current())
+      this.wrap(this.$api.users.current())
     }
   }
   render () {

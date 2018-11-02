@@ -1,12 +1,8 @@
 import queryString from 'query-string'
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
-import api from '@/api'
-import helpers from '@/helpers'
 import form from '@/hoc/form'
 import requester from '@/hoc/requester'
-import i18n from '@/i18n'
-import notify from '@/notify'
 
 class SignInPage extends React.Component {
   constructor (props) {
@@ -26,10 +22,10 @@ class SignInPage extends React.Component {
     formData.set('login', this.state.login)
     formData.set('password', this.state.password)
 
-    return api.auth.login(formData).then(() => {
-      return helpers.fetchGlobalData()
+    return this.$api.auth.login(formData).then(() => {
+      return this.$helpers.fetchGlobalData()
     }).then(() => {
-      notify.success('sign-in-successful')
+      this.$notify.success('sign-in-successful')
       const history = this.props.history
       const query = queryString.parse(history.location.search)
       history.push(query.redirect || '/')
@@ -40,7 +36,7 @@ class SignInPage extends React.Component {
       <div className="o-page o-page--intro">
         <div className="o-card">
           <h1 className="o-card__header">
-            { i18n.t('global.app') }
+            { this.$i18n.t('global.app') }
           </h1>
           <div className="o-page__separator o-page__separator--intro"/>
           <form
@@ -53,7 +49,7 @@ class SignInPage extends React.Component {
             <input
               className="o-form__input o-form__input--full"
               onChange={ (event) => this.setState({ login: event.target.value })}
-              placeholder={ i18n.t('form.login') }
+              placeholder={ this.$i18n.t('form.login') }
               type="text"
               value={ this.state.login }
             />
@@ -61,7 +57,7 @@ class SignInPage extends React.Component {
               <input
                 className="o-form__input o-form__input--full"
                 onChange={ (event) => this.setState({ password: event.target.value }) }
-                placeholder={ i18n.t('form.password') }
+                placeholder={ this.$i18n.t('form.password') }
                 type={ this.getPasswordFieldType() }
                 value={ this.state.password }
               />
@@ -78,20 +74,20 @@ class SignInPage extends React.Component {
               className="o-form__action o-form__action--secondary"
               to="/reset"
             >
-              { i18n.t('form.forgot-password') }
+              { this.$i18n.t('form.forgot-password') }
             </Link>
             <input
               className={ `o-button o-button__accent o-button--full ${this.state.pending ? 'is-disabled' : ''}`}
               type="submit"
-              value={ i18n.t('form.sign-in') }
+              value={ this.$i18n.t('form.sign-in') }
             />
             <p className="o-form__footer">
-              { i18n.t('form.not-have-account') }
+              { this.$i18n.t('form.not-have-account') }
               <Link
                 className="o-form__action"
                 to="/register"
               >
-                { i18n.t('form.register') }
+                { this.$i18n.t('form.register') }
               </Link>
             </p>
           </form>
