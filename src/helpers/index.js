@@ -22,5 +22,8 @@ export default {
       return match && match.isExact
     })
     return !!(matched && matched.meta && matched.meta.requiresAuth)
+  },
+  fetchGlobalData () {
+    return Promise.resolve()
   }
 }

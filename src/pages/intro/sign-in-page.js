@@ -1,7 +1,12 @@
+import queryString from 'query-string'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
+import api from '@/api'
+import helpers from '@/helpers'
 import form from '@/hoc/form'
+import requester from '@/hoc/requester'
 import i18n from '@/i18n'
+import notify from '@/notify'
 
 class SignInPage extends React.Component {
   constructor (props) {
@@ -9,10 +14,26 @@ class SignInPage extends React.Component {
     this.state = {
       login: this.props.login,
       password: this.props.password,
-      passwordVisible: this.props.passwordVisible
+      passwordVisible: this.props.passwordVisible,
+      pending: this.props.pending
     }
     this.getPasswordFieldType = this.props.getPasswordFieldType.bind(this)
     this.togglePassword = this.props.togglePassword.bind(this)
+    this.wrap = this.props.wrap.bind(this)
+  }
+  signIn () {
+    const formData = new FormData()
+    formData.set('login', this.state.login)
+    formData.set('password', this.state.password)
+
+    return api.auth.login(formData).then(() => {
+      return helpers.fetchGlobalData()
+    }).then(() => {
+      notify.success('sign-in-successful')
+      const history = this.props.history
+      const query = queryString.parse(history.location.search)
+      history.push(query.redirect || '/')
+    })
   }
   render () {
     return (
@@ -22,7 +43,13 @@ class SignInPage extends React.Component {
             { i18n.t('global.app') }
           </h1>
           <div className="o-page__separator o-page__separator--intro"/>
-          <form className="o-form">
+          <form
+            className="o-form"
+            onSubmit={ (event) => {
+              event.preventDefault()
+              this.wrap(this.signIn())
+            } }
+          >
             <input
               className="o-form__input o-form__input--full"
               onChange={ (event) => this.setState({ login: event.target.value })}
@@ -54,7 +81,7 @@ class SignInPage extends React.Component {
               { i18n.t('form.forgot-password') }
             </Link>
             <input
-              className="o-button o-button__accent o-button--full"
+              className={ `o-button o-button__accent o-button--full ${this.state.pending ? 'is-disabled' : ''}`}
               type="submit"
               value={ i18n.t('form.sign-in') }
             />
@@ -74,4 +101,4 @@ class SignInPage extends React.Component {
   }
 }
 
-export default form(SignInPage)
+export default withRouter(requester(form(SignInPage)))
