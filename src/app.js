@@ -1,8 +1,11 @@
 import React from 'react'
 import { Provider } from 'react-redux'
-import RouterView from '@/router'
+import { Redirect, Route, Router, Switch } from 'react-router-dom'
+import history from '@/router/history'
+import routes from '@/router/routes'
 import store from '@/store'
 import requester from '@/hoc/requester'
+import AppNavbar from '@/components/app-navbar'
 
 class App extends React.Component {
   constructor (props) {
@@ -15,6 +18,9 @@ class App extends React.Component {
   get loggedIn () {
     return store.getState().auth.loggedIn
   }
+  get requiresAuth () {
+    return this.$helpers.requiresAuth(history.location.pathname)
+  }
   componentDidMount () {
     // Because history.listen is not called on app start
     this.$helpers.checkNavigation()
@@ -25,11 +31,28 @@ class App extends React.Component {
   render () {
     return (
       <Provider store={ store }>
-        { !this.state.pending &&
-          <div className="o-typography">
-            <RouterView/>
-          </div>
-        }
+        <div className="o-typography">
+          { !this.state.pending &&
+            <Router history={ history }>
+              <React.Fragment>
+                { this.requiresAuth &&
+                  <AppNavbar/>
+                }
+                <Switch>
+                  { routes.map((route) => (
+                    <Route
+                      exact
+                      key={ route.path }
+                      path={ route.path }
+                      component={ route.component }
+                    />
+                  )) }
+                  <Redirect to="/"/>
+                </Switch>
+              </React.Fragment>
+            </Router>
+          }
+        </div>
       </Provider>
     )
   }

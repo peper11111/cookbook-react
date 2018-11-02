@@ -1,0 +1,65 @@
+@import '../assets/styles/mixins';
+@import '../assets/styles/variables';
+
+.c-app-navbar {
+  @include box-elevation;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-width: 1000px;
+  height: $navbar-height;
+  z-index: 1000;
+  padding: 0 96px;
+  box-sizing: border-box;
+  background-color: $color-primary;
+
+  &__row {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+
+    &--clickable {
+      cursor: pointer;
+      user-select: none;
+    }
+  }
+
+  &__logo {
+    width: 32px;
+    height: 32px;
+  }
+
+  &__brand {
+    font-size: 28px;
+    font-family: 'Dancing Script', cursive;
+    color: $color-text;
+    letter-spacing: 1px;
+  }
+
+  &__item {
+    margin-left: 4px;
+    color: $color-primary-light;
+    cursor: pointer;
+    user-select: none;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:hover, &.is-active {
+      color: $color-text;
+    }
+  }
+
+  &__separator {
+    width: 1px;
+    height: 16px;
+    margin: 0 10px;
+    background-color: $color-primary-light;
+    box-sizing: border-box;
+  }
+}
