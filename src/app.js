@@ -2,11 +2,18 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import { Redirect, Route, Router, Switch } from 'react-router-dom'
 import api from '@/api'
+import helpers from '@/helpers'
 import history from '@/router/history'
 import routes from '@/router/routes'
 import store from '@/store'
 
 class App extends React.Component {
+  componentDidMount () {
+    helpers.checkNavigation()
+    if (store.getState().auth.loggedIn) {
+      api.users.current()
+    }
+  }
   render () {
     return (
       <Provider store={ store }>
