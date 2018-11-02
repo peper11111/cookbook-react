@@ -2,15 +2,14 @@
 @import './mixins';
 
 .o-page {
-  padding-top: $navbar-height;
-  color: $color-text-primary;
+  height: calc(100vh - #{$navbar-height});
+  margin-top: $navbar-height;
   background-color: $color-white;
-  font-family: 'Roboto', sans-serif;
-  font-size: 14px;
+  overflow: auto;
 
   &--intro {
-    margin-top: 0;
     height: 100vh;
+    margin-top: 0;
     display: flex;
     justify-content: center;
     align-items: center;
