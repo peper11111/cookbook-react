@@ -9,6 +9,7 @@ import store from '@/store'
 
 class App extends React.Component {
   componentDidMount () {
+    // Because history.listen is not called on app start
     helpers.checkNavigation()
     if (store.getState().auth.loggedIn) {
       api.users.current()
