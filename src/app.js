@@ -33,8 +33,11 @@ class App extends React.Component {
           <RouterView/>
         </div>
       )
+    } else {
+      return (
+        <div className="o-page__loader"/>
+      )
     }
-    return (null)
   }
 }
 
