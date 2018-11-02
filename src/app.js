@@ -1,6 +1,7 @@
 import React from 'react'
 import { Provider } from 'react-redux'
-import { Route, Router } from 'react-router-dom'
+import { Redirect, Route, Router, Switch } from 'react-router-dom'
+import api from '@/api'
 import history from '@/router/history'
 import routes from '@/router/routes'
 import store from '@/store'
@@ -10,7 +11,7 @@ class App extends React.Component {
     return (
       <Provider store={ store }>
         <Router history={ history }>
-          <div>
+          <Switch>
             { routes.map((route) => (
               <Route
                 exact
@@ -19,7 +20,8 @@ class App extends React.Component {
                 component={ route.component }
               />
             )) }
-          </div>
+            <Redirect to="/"/>
+          </Switch>
         </Router>
       </Provider>
     )
