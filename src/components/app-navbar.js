@@ -1,9 +1,12 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import NavbarUser from '@/components/navbar/navbar-user'
 import '@/components/app-navbar.scss'
 
 class AppNavbar extends React.Component {
+  isActive (pathname) {
+    return this.props.history.location.pathname === pathname
+  }
   render () {
     return (
       <nav className="c-app-navbar">
@@ -24,7 +27,7 @@ class AppNavbar extends React.Component {
         <div className="c-app-navbar__row">
           <Link
             to="/"
-            className="c-app-navbar__item"
+            className={ `c-app-navbar__item ${this.isActive('/') ? 'is-active' : ''}` }
           >
             <i className="material-icons">
               favorite
@@ -32,7 +35,7 @@ class AppNavbar extends React.Component {
           </Link>
           <Link
             to="/explore"
-            className="c-app-navbar__item"
+            className={ `c-app-navbar__item ${this.isActive('/explore') ? 'is-active' : ''}` }
           >
             <i className="material-icons">
               explore
@@ -40,7 +43,7 @@ class AppNavbar extends React.Component {
           </Link>
           <Link
             to="/favourite"
-            className="c-app-navbar__item"
+            className={ `c-app-navbar__item ${this.isActive('/favourite') ? 'is-active' : ''}` }
           >
             <i className="material-icons">
               book
@@ -54,4 +57,4 @@ class AppNavbar extends React.Component {
   }
 }
 
-export default AppNavbar
+export default withRouter(AppNavbar)
