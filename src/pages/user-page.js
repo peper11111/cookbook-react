@@ -1,6 +1,9 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import UserDetails from '@/components/user/user-details'
 import requester from '@/hoc/requester'
+import { setUser } from '@/store/actions'
 
 class UserPage extends React.Component {
   constructor (props) {
@@ -9,6 +12,16 @@ class UserPage extends React.Component {
       pending: this.props.pending
     }
     this.wrap = this.props.wrap.bind(this)
+  }
+  fetchUser () {
+    this.wrap(() => {
+      return this.$api.users.read(this.props.match.params.id).then((value) => {
+        this.props.dispatchSetUser(value.data)
+      })
+    })
+  }
+  componentDidMount () {
+    this.fetchUser()
   }
   render () {
     if (!this.state.pending) {
@@ -25,4 +38,12 @@ class UserPage extends React.Component {
   }
 }
 
-export default requester(UserPage)
+const mapStateToProps = (state) => ({
+  user: state.user
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  dispatchSetUser: (user) => dispatch(setUser(user))
+})
+
+export default requester(withRouter(connect(mapStateToProps, mapDispatchToProps)(UserPage)))
