@@ -9,6 +9,7 @@ class App extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
+      done: !this.props.loggedIn,
       pending: this.props.pending
     }
     this.wrap = this.props.wrap.bind(this)
@@ -18,7 +19,9 @@ class App extends React.Component {
   }
   fetchGlobalData () {
     this.wrap(() => {
-      return this.$helpers.fetchGlobalData()
+      return this.$helpers.fetchGlobalData().then(() => {
+        this.setState({ done: true })
+      })
     })
   }
   componentDidMount () {
@@ -29,7 +32,7 @@ class App extends React.Component {
     }
   }
   render () {
-    if (!this.state.pending) {
+    if (this.state.done) {
       return (
         <div className="o-typography">
           { this.requiresAuth &&
