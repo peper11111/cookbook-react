@@ -18,14 +18,18 @@ class SignInPage extends React.Component {
     this.wrap = this.props.wrap.bind(this)
   }
   signIn () {
-    const formData = new FormData()
-    formData.set('login', this.state.login)
-    formData.set('password', this.state.password)
+    const request = () => {
+      const formData = new FormData()
+      formData.set('login', this.state.login)
+      formData.set('password', this.state.password)
 
-    return this.$api.auth.login(formData).then(() => {
-      return this.$helpers.fetchGlobalData()
-    }).then(() => {
-      this.$notify.success('sign-in-successful')
+      return this.$api.auth.login(formData).then(() => {
+        return this.$helpers.fetchGlobalData()
+      }).then(() => {
+        this.$notify.success('sign-in-successful')
+      })
+    }
+    this.wrap(request).then(() => {
       const query = queryString.parse(this.props.history.location.search)
       this.props.history.push(query.redirect || '/')
     })
@@ -42,7 +46,7 @@ class SignInPage extends React.Component {
             className="o-form"
             onSubmit={ (event) => {
               event.preventDefault()
-              this.wrap(this.signIn())
+              this.signIn()
             } }
           >
             <input

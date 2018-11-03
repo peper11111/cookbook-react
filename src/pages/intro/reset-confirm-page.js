@@ -17,12 +17,16 @@ class ResetConfirmPage extends React.Component {
     this.wrap = this.props.wrap.bind(this)
   }
   resetConfirm () {
-    const query = queryString.parse(this.props.history.location.search)
-    return this.$api.auth.resetConfirm({
-      password: this.state.password,
-      uuid: query.uuid
-    }).then(() => {
-      this.$notify.success('password-reset')
+    const request = () => {
+      const query = queryString.parse(this.props.history.location.search)
+      return this.$api.auth.resetConfirm({
+        password: this.state.password,
+        uuid: query.uuid
+      }).then(() => {
+        this.$notify.success('password-reset')
+      })
+    }
+    this.wrap(request).then(() => {
       this.props.history.push('/sign-in')
     })
   }
@@ -37,7 +41,7 @@ class ResetConfirmPage extends React.Component {
           <form
             onSubmit={ (event) => {
               event.preventDefault()
-              this.wrap(this.resetConfirm())
+              this.resetConfirm()
             } }
             className="o-form"
           >

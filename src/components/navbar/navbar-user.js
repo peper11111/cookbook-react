@@ -13,16 +13,20 @@ class NavbarUser extends React.Component {
     this.wrap = this.props.wrap.bind(this)
   }
   signOut () {
-    return this.$api.auth.logout().then(() => {
-      this.props.dispatchSignOut()
-      this.$notify.success('sign-out-successful')
+    const request = () => {
+      return this.$api.auth.logout().then(() => {
+        this.props.dispatchSignOut()
+        this.$notify.success('sign-out-successful')
+      })
+    }
+    this.wrap(request).then(() => {
       this.props.history.push('/sign-in')
     })
   }
   render () {
     return (
       <div
-        onClick={ () => this.wrap(this.signOut()) }
+        onClick={ () => this.signOut() }
       >Log out</div>
     )
   }

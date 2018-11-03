@@ -20,7 +20,7 @@ class App extends React.Component {
     // Because history listener is not called on app start
     this.$helpers.checkNavigation()
     if (this.props.loggedIn) {
-      this.wrap(this.$api.users.current())
+      this.wrap(this.$api.users.current)
     }
   }
   render () {

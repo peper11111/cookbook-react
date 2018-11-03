@@ -12,15 +12,18 @@ class RegisterVerifyPage extends React.Component {
     this.wrap = this.props.wrap.bind(this)
   }
   componentDidMount () {
-    this.wrap(this.registerVerify())
+    this.registerVerify()
   }
   registerVerify () {
-    const query = queryString.parse(this.props.history.location.search)
-    return this.$api.auth.registerVerify({
-      uuid: query.uuid
-    }).then(() => {
-      this.$notify.success('user-verified')
-    }).finally(() => {
+    const request = () => {
+      const query = queryString.parse(this.props.history.location.search)
+      return this.$api.auth.registerVerify({
+        uuid: query.uuid
+      }).then(() => {
+        this.$notify.success('user-verified')
+      })
+    }
+    this.wrap(request).then(() => {
       this.props.history.push('/sign-in')
     })
   }

@@ -20,20 +20,26 @@ class RegisterPage extends React.Component {
     this.wrap = this.props.wrap.bind(this)
   }
   register () {
-    return this.$api.auth.register({
-      email: this.state.email,
-      username: this.state.username,
-      password: this.state.password
-    }).then(() => {
-      this.setState({ done: true })
-    })
+    const request = () => {
+      return this.$api.auth.register({
+        email: this.state.email,
+        username: this.state.username,
+        password: this.state.password
+      }).then(() => {
+        this.setState({ done: true })
+      })
+    }
+    this.wrap(request)
   }
   registerResend () {
-    return this.$api.auth.registerResend({
-      login: this.state.username
-    }).then(() => {
-      this.$notify.info('message-resend')
-    })
+    const request = () => {
+      return this.$api.auth.registerResend({
+        login: this.state.username
+      }).then(() => {
+        this.$notify.info('message-resend')
+      })
+    }
+    this.wrap(request)
   }
   render () {
     return (
@@ -48,7 +54,7 @@ class RegisterPage extends React.Component {
               className="o-form"
               onSubmit={ (event) => {
                 event.preventDefault()
-                this.wrap(this.register())
+                this.register()
               } }
             >
               <input
@@ -113,7 +119,7 @@ class RegisterPage extends React.Component {
               </p>
               <div
                 className={ `o-button o-button__accent o-button--full ${this.state.pending ? 'is-disabled' : ''}` }
-                onClick={ () => this.wrap(this.registerResend()) }
+                onClick={ () => this.registerResend() }
               >
                 { this.$i18n.t('form.resend-email') }
               </div>

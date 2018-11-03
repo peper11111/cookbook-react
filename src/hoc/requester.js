@@ -8,10 +8,10 @@ export default function (WrappedComponent) {
     }
     wrap (request) {
       if (this.state.pending) {
-        return
+        return Promise.reject(new Error('Request already pending'))
       }
       this.setState({ pending: true })
-      request.finally(() => {
+      return request().finally(() => {
         this.setState({ pending: false })
       })
     }

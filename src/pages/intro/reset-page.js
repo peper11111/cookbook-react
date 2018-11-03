@@ -13,18 +13,24 @@ class ResetPage extends React.Component {
     this.wrap = this.props.wrap.bind(this)
   }
   reset () {
-    return this.$api.auth.reset({
-      login: this.state.login
-    }).then(() => {
-      this.setState({ done: true })
-    })
+    const request = () => {
+      return this.$api.auth.reset({
+        login: this.state.login
+      }).then(() => {
+        this.setState({ done: true })
+      })
+    }
+    this.wrap(request)
   }
   resetResend () {
-    return this.$api.auth.resetResend({
-      login: this.state.login
-    }).then(() => {
-      this.$notify.info('message-resend')
-    })
+    const request = () => {
+      return this.$api.auth.resetResend({
+        login: this.state.login
+      }).then(() => {
+        this.$notify.info('message-resend')
+      })
+    }
+    this.wrap(request)
   }
   render () {
     return (
@@ -38,7 +44,7 @@ class ResetPage extends React.Component {
             <form
               onSubmit={ (event) => {
                 event.preventDefault()
-                this.wrap(this.reset())
+                this.reset()
               } }
               className="o-form"
             >
@@ -74,7 +80,7 @@ class ResetPage extends React.Component {
               </p>
               <div
                 className={ `o-button o-button__accent o-button--full ${this.state.pending ? 'is-disabled' : ''}` }
-                onClick={ () => this.wrap(this.resetResend()) }
+                onClick={ () => this.resetResend() }
               >
                 { this.$i18n.t('form.resend-email') }
               </div>
