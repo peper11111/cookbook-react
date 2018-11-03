@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import form from '@/hoc/form'
-import requester from '@/hoc/requester'
 
 class ResetPage extends React.Component {
   constructor (props) {
@@ -90,4 +89,4 @@ class ResetPage extends React.Component {
   }
 }
 
-export default form(requester(ResetPage))
+export default form(ResetPage)

@@ -1,7 +1,8 @@
 import React from 'react'
+import requester from '@/hoc/requester'
 
 export default function (WrappedComponent) {
-  return class extends React.Component {
+  class Form extends React.Component {
     constructor (props) {
       super(props)
       this.state = {
@@ -43,4 +44,5 @@ export default function (WrappedComponent) {
       )
     }
   }
+  return requester(Form)
 }

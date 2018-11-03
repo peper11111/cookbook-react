@@ -2,7 +2,6 @@ import queryString from 'query-string'
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import form from '@/hoc/form'
-import requester from '@/hoc/requester'
 
 class ResetConfirmPage extends React.Component {
   constructor (props) {
@@ -88,4 +87,4 @@ class ResetConfirmPage extends React.Component {
   }
 }
 
-export default form(requester(withRouter(ResetConfirmPage)))
+export default form(withRouter(ResetConfirmPage))

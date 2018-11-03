@@ -2,7 +2,6 @@ import queryString from 'query-string'
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import form from '@/hoc/form'
-import requester from '@/hoc/requester'
 
 class SignInPage extends React.Component {
   constructor (props) {
@@ -99,4 +98,4 @@ class SignInPage extends React.Component {
   }
 }
 
-export default form(requester(withRouter(SignInPage)))
+export default form(withRouter(SignInPage))

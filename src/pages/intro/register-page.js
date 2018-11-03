@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import form from '@/hoc/form'
-import requester from '@/hoc/requester'
 
 class RegisterPage extends React.Component {
   constructor (props) {
@@ -129,4 +128,4 @@ class RegisterPage extends React.Component {
   }
 }
 
-export default form(requester(RegisterPage))
+export default form(RegisterPage)

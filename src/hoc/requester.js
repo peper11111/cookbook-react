@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function (WrappedComponent) {
-  return class extends React.Component {
+  class Requester extends React.Component {
     constructor (props) {
       super(props)
       this.state = { pending: false }
@@ -25,4 +25,5 @@ export default function (WrappedComponent) {
       )
     }
   }
+  return Requester
 }
