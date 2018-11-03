@@ -35,7 +35,6 @@ class NavbarUser extends React.Component {
     })
   }
   hideDropdown () {
-    console.log('hide-dropdown')
     this.setState({
       dropdownVisible: false
     })
