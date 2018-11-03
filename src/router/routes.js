@@ -1,6 +1,7 @@
 import HomePage from '@/pages/home-page'
 import ExplorePage from '@/pages/explore-page'
 import FavouritePage from '@/pages/favourite-page'
+import UserPage from '@/pages/user-page'
 import SignInPage from '@/pages/intro/sign-in-page'
 import RegisterPage from '@/pages/intro/register-page'
 import RegisterVerifyPage from '@/pages/intro/register-verify-page'
@@ -21,6 +22,11 @@ export default [
   {
     path: '/favourite',
     component: FavouritePage,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/user/:id',
+    component: UserPage,
     meta: { requiresAuth: true }
   },
   {
