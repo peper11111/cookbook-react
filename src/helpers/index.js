@@ -1,5 +1,5 @@
-import { matchPath } from 'react-router-dom'
 import queryString from 'query-string'
+import { matchPath } from 'react-router-dom'
 import api from '@/api'
 import helpers from '@/helpers'
 import i18n from '@/i18n'

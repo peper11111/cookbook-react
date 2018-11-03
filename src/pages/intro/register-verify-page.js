@@ -1,6 +1,6 @@
+import queryString from 'query-string'
 import React from 'react'
 import { withRouter } from 'react-router-dom'
-import queryString from 'query-string'
 import requester from '@/hoc/requester'
 
 class RegisterVerifyPage extends React.Component {
