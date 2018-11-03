@@ -13,6 +13,16 @@ class ImagePicker extends React.Component {
           className="c-image-picker__image"
           src={ this.bannerSrc() }
         />
+        { !this.props.disabled &&
+          <div
+            onClick={ () => this.showModal() }
+            className="c-image-picker__overlay"
+          >
+            <i className="material-icons">
+              camera_alt
+            </i>
+          </div>
+        }
       </div>
     )
   }
