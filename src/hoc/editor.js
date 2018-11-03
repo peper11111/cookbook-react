@@ -25,14 +25,14 @@ export default function (WrappedComponent) {
       return this.state.mode === Mode.PREVIEW
     }
     init () {
+      const models = {}
       for (const key in this.state.models) {
         if (!this.state.models.hasOwnProperty(key)) {
           continue
         }
-        this.setState({ models: {
-          [key]: this.model()[key]
-        } })
+        models[key] = this.model()[key]
       }
+      this.setState({ models })
     }
     getParams () {
       const params = {}
