@@ -16,7 +16,7 @@ class NavbarUser extends React.Component {
     }
     this.wrap = this.props.wrap.bind(this)
   }
-  get imageSrc () {
+  imageSrc () {
     return this.$helpers.thumbnailSrc(this.props.authUser.avatarId) || config.blankAvatar
   }
   signOut () {
@@ -55,7 +55,7 @@ class NavbarUser extends React.Component {
           <img
             alt=""
             className="c-navbar-user__image"
-            src={ this.imageSrc }
+            src={ this.imageSrc() }
           />
           { this.state.dropdownVisible &&
             <AppDropdown

@@ -14,7 +14,7 @@ class App extends React.Component {
     }
     this.wrap = this.props.wrap.bind(this)
   }
-  get requiresAuth () {
+  requiresAuth () {
     return this.$helpers.requiresAuth(this.props.history.location.pathname)
   }
   fetchGlobalData () {
@@ -35,7 +35,7 @@ class App extends React.Component {
     if (this.state.done) {
       return (
         <div className="o-typography">
-          { this.requiresAuth &&
+          { this.requiresAuth() &&
             <AppNavbar/>
           }
           <RouterView/>
