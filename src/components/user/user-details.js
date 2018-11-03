@@ -19,10 +19,11 @@ class UserDetails extends React.Component {
         biography: null
       }
     }
-    this.init = this.props.init.bind(this)
     this.editMode = this.props.editMode.bind(this)
     this.createMode = this.props.createMode.bind(this)
     this.previewMode = this.props.previewMode.bind(this)
+    this.init = this.props.init.bind(this)
+    this.getParams = this.props.getParams.bind(this)
     this.onAction = this.props.onAction.bind(this)
     this.wrap = this.props.wrap.bind(this)
   }
