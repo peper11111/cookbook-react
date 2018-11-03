@@ -1,4 +1,5 @@
 import React from 'react'
+import UserDetails from '@/components/user/user-details'
 import requester from '@/hoc/requester'
 
 class UserPage extends React.Component {
@@ -14,6 +15,7 @@ class UserPage extends React.Component {
       return (
         <div className="o-page">
           <div className="o-page__wrapper o-page__wrapper--top">
+            <UserDetails/>
           </div>
         </div>
       )
