@@ -1,6 +1,7 @@
 import queryString from 'query-string'
 import { matchPath } from 'react-router-dom'
 import api from '@/api'
+import config from '@/config'
 import helpers from '@/helpers'
 import i18n from '@/i18n'
 import history from '@/router/history'
@@ -25,6 +26,12 @@ export default {
       return match && match.isExact
     })
     return !!(matched && matched.meta && matched.meta.requiresAuth)
+  },
+  imageSrc (id) {
+    return id ? `${config.baseURL}/uploads/${id}` : null
+  },
+  thumbnailSrc (id) {
+    return id ? `${config.baseURL}/uploads/${id}/thumbnail` : null
   },
   fetchGlobalData () {
     return helpers.fetchCurrentUser().then(() => {
