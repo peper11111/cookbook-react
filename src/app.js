@@ -16,11 +16,16 @@ class App extends React.Component {
   get requiresAuth () {
     return this.$helpers.requiresAuth(this.props.history.location.pathname)
   }
+  fetchGlobalData () {
+    this.wrap(() => {
+      return this.$helpers.fetchGlobalData
+    })
+  }
   componentDidMount () {
     // Because history listener is not called on app start
     this.$helpers.checkNavigation()
     if (this.props.loggedIn) {
-      this.wrap(this.$helpers.fetchGlobalData)
+      this.fetchGlobalData()
     }
   }
   render () {

@@ -18,7 +18,7 @@ class SignInPage extends React.Component {
     this.wrap = this.props.wrap.bind(this)
   }
   signIn () {
-    const request = () => {
+    this.wrap(() => {
       const formData = new FormData()
       formData.set('login', this.state.login)
       formData.set('password', this.state.password)
@@ -28,8 +28,7 @@ class SignInPage extends React.Component {
       }).then(() => {
         this.$notify.success('sign-in-successful')
       })
-    }
-    this.wrap(request).then(() => {
+    }).then(() => {
       const query = queryString.parse(this.props.history.location.search)
       this.props.history.push(query.redirect || '/')
     })

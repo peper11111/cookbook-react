@@ -20,7 +20,7 @@ class RegisterPage extends React.Component {
     this.wrap = this.props.wrap.bind(this)
   }
   register () {
-    const request = () => {
+    this.wrap(() => {
       return this.$api.auth.register({
         email: this.state.email,
         username: this.state.username,
@@ -28,18 +28,16 @@ class RegisterPage extends React.Component {
       }).then(() => {
         this.setState({ done: true })
       })
-    }
-    this.wrap(request)
+    })
   }
   registerResend () {
-    const request = () => {
+    this.wrap(() => {
       return this.$api.auth.registerResend({
         login: this.state.username
       }).then(() => {
         this.$notify.info('message-resend')
       })
-    }
-    this.wrap(request)
+    })
   }
   render () {
     return (

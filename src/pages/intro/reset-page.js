@@ -13,24 +13,22 @@ class ResetPage extends React.Component {
     this.wrap = this.props.wrap.bind(this)
   }
   reset () {
-    const request = () => {
+    this.wrap(() => {
       return this.$api.auth.reset({
         login: this.state.login
       }).then(() => {
         this.setState({ done: true })
       })
-    }
-    this.wrap(request)
+    })
   }
   resetResend () {
-    const request = () => {
+    this.wrap(() => {
       return this.$api.auth.resetResend({
         login: this.state.login
       }).then(() => {
         this.$notify.info('message-resend')
       })
-    }
-    this.wrap(request)
+    })
   }
   render () {
     return (

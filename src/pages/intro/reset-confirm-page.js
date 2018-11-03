@@ -17,7 +17,7 @@ class ResetConfirmPage extends React.Component {
     this.wrap = this.props.wrap.bind(this)
   }
   resetConfirm () {
-    const request = () => {
+    this.wrap(() => {
       const query = queryString.parse(this.props.history.location.search)
       return this.$api.auth.resetConfirm({
         password: this.state.password,
@@ -25,8 +25,7 @@ class ResetConfirmPage extends React.Component {
       }).then(() => {
         this.$notify.success('password-reset')
       })
-    }
-    this.wrap(request).then(() => {
+    }).then(() => {
       this.props.history.push('/sign-in')
     })
   }
