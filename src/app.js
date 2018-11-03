@@ -18,7 +18,7 @@ class App extends React.Component {
   }
   fetchGlobalData () {
     this.wrap(() => {
-      return this.$helpers.fetchGlobalData
+      return this.$helpers.fetchGlobalData()
     })
   }
   componentDidMount () {
