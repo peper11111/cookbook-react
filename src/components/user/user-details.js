@@ -4,6 +4,7 @@ import config from '@/config'
 import DetailActions from '@/components/detail-actions'
 import ImagePicker from '@/components/form/image-picker'
 import editor from '@/hoc/editor'
+import { setUser } from '@/store/actions'
 import '@/components/user/user-details.scss'
 
 class UserDetails extends React.Component {
@@ -36,6 +37,20 @@ class UserDetails extends React.Component {
   componentDidMount () {
     this.init()
   }
+  modify (params) {
+    this.wrap(() => {
+      return this.$api.users.modify(this.user.id, params).then(() => {
+        return this.$api.users.read(this.user.id)
+      }).then((value) => {
+        this.props.dispatchSetUser(value.data)
+        return this.isAuthUser()
+          ? this.$helpers.fetchCurrentUser()
+          : Promise.resolve()
+      }).then(() => {
+          this.$notify.success('profile-update-successful')
+      })
+    })
+  }
   render () {
     return (
       <div className="c-user-details">
@@ -62,6 +77,10 @@ class UserDetails extends React.Component {
 const mapStateToProps = (state) => ({
   authUser: state.auth.user,
   user: state.user
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  dispatchSetUser: (user) => dispatch(setUser(user))
 })
 
 export default editor(connect(mapStateToProps)(UserDetails))
