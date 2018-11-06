@@ -29,7 +29,7 @@ class App extends React.Component {
     }
   }
   render () {
-    if (!this.pending) {
+    if (!this.state.pending) {
       return (
         <div className="o-typography">
           { this.requiresAuth() &&
