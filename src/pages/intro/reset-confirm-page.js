@@ -23,9 +23,8 @@ class ResetConfirmPage extends React.Component {
         uuid: query.uuid
       }).then(() => {
         this.$notify.success('password-reset')
+        this.props.history.push('/sign-in')
       })
-    }).then(() => {
-      this.props.history.push('/sign-in')
     })
   }
   render () {

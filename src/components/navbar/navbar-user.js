@@ -24,9 +24,8 @@ class NavbarUser extends React.Component {
       return this.$api.auth.logout().then(() => {
         this.props.dispatchSignOut()
         this.$notify.success('sign-out-successful')
+        this.props.history.push('/sign-in')
       })
-    }).then(() => {
-      this.props.history.push('/sign-in')
     })
   }
   toggleDropdown () {

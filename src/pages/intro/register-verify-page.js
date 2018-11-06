@@ -21,9 +21,8 @@ class RegisterVerifyPage extends React.Component {
         uuid: query.uuid
       }).then(() => {
         this.$notify.success('user-verified')
+        this.props.history.push('/sign-in')
       })
-    }).then(() => {
-      this.props.history.push('/sign-in')
     })
   }
   render () {

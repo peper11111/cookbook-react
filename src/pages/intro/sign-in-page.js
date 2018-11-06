@@ -26,10 +26,9 @@ class SignInPage extends React.Component {
         return this.$helpers.fetchGlobalData()
       }).then(() => {
         this.$notify.success('sign-in-successful')
+        const query = queryString.parse(this.props.history.location.search)
+        this.props.history.push(query.redirect || '/')
       })
-    }).then(() => {
-      const query = queryString.parse(this.props.history.location.search)
-      this.props.history.push(query.redirect || '/')
     })
   }
   render () {
