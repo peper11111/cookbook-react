@@ -47,7 +47,7 @@ class UserDetails extends React.Component {
           ? this.$helpers.fetchCurrentUser()
           : Promise.resolve()
       }).then(() => {
-          this.$notify.success('profile-update-successful')
+        this.$notify.success('profile-update-successful')
       })
     })
   }
