@@ -83,4 +83,4 @@ const mapDispatchToProps = (dispatch) => ({
   dispatchSetUser: (user) => dispatch(setUser(user))
 })
 
-export default editor(connect(mapStateToProps)(UserDetails))
+export default editor(connect(mapStateToProps, mapDispatchToProps)(UserDetails))
