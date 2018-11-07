@@ -56,15 +56,21 @@ export default function (WrappedComponent) {
           this.setState({ mode: Mode.PREVIEW })
           break
         case 'create':
-          this.create(this.getParams())
+          this.wrap(() => {
+            return this.create(this.getParams())
+          })
           break
         case 'save':
-          this.modify(this.getParams()).then(() => {
+          this.wrap(() => {
+            return this.modify(this.getParams())
+          }).then(() => {
             this.setState({ mode: Mode.PREVIEW })
           })
           break
         case 'delete':
-          this.delete()
+          this.wrap(() => {
+            return this.delete()
+          })
           break
         default:
           break

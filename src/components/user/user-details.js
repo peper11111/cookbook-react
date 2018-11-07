@@ -38,17 +38,15 @@ class UserDetails extends React.Component {
     this.init()
   }
   modify (params) {
-    this.wrap(() => {
-      return this.$api.users.modify(this.user.id, params).then(() => {
-        return this.$api.users.read(this.user.id)
-      }).then((value) => {
-        this.props.dispatchSetUser(value.data)
-        return this.isAuthUser()
-          ? this.$helpers.fetchCurrentUser()
-          : Promise.resolve()
-      }).then(() => {
-        this.$notify.success('profile-update-successful')
-      })
+    return this.$api.users.modify(this.props.user.id, params).then(() => {
+      return this.$api.users.read(this.props.user.id)
+    }).then((value) => {
+      this.props.dispatchSetUser(value.data)
+      return this.isAuthUser()
+        ? this.$helpers.fetchCurrentUser()
+        : Promise.resolve()
+    }).then(() => {
+      this.$notify.success('profile-update-successful')
     })
   }
   render () {
