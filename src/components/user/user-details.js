@@ -65,7 +65,7 @@ class UserDetails extends React.Component {
           className="c-user-details__banner"
           disabled={ this.previewMode() }
           value={ this.state.models.bannerId }
-          onChange={ (bannerId) => this.setState({ models: { bannerId } }) }
+          onInput={ (bannerId) => this.setState({ models: { ...this.state.models, bannerId } }) }
         />
       </div>
     )

@@ -23,6 +23,17 @@ class ImagePicker extends React.Component {
             </i>
           </div>
         }
+        {
+          !this.props.disabled && this.props.value &&
+          <div
+            onClick={ () => this.props.onInput() }
+            className="c-image-picker__clear"
+          >
+            <i className="material-icons">
+              clear
+            </i>
+          </div>
+        }
       </div>
     )
   }
