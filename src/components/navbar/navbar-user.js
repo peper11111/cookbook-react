@@ -29,14 +29,10 @@ class NavbarUser extends React.Component {
     })
   }
   toggleDropdown () {
-    this.setState({
-      dropdownVisible: !this.state.dropdownVisible
-    })
+    this.setState({ dropdownVisible: !this.state.dropdownVisible })
   }
   hideDropdown () {
-    this.setState({
-      dropdownVisible: false
-    })
+    this.setState({ dropdownVisible: false })
   }
   render () {
     return (

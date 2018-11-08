@@ -1,0 +1,45 @@
+@import '../assets/styles/mixins';
+@import '../assets/styles/variables';
+
+.c-app-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.3);
+
+  &__content {
+    @include box-elevation;
+    position: relative;
+    padding: 16px;
+    border-radius: 2px;
+    background-color: $color-white;
+    width: 1000px;
+    height: 80vh;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    height: 24px;
+    font-size: 24px;
+  }
+
+  &__body {
+    height: calc(100% - 96px);
+    margin: 16px 0;
+    overflow: auto;
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 40px;
+  }
+}
