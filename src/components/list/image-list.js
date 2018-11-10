@@ -1,16 +1,41 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import config from '@/config'
-import requester from '@/hoc/requester'
+import scroll from '@/hoc/scroll'
 import '@/components/list/image-list.scss'
 
 class ImageList extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
+      done: this.props.done,
+      items: this.props.items,
+      page: this.props.page,
+      scrollParent: this.props.scrollParent,
       pending: this.props.pending
     }
+    this.init = this.props.init.bind(this)
+    this.getScrollParent = this.props.getScrollParent.bind(this)
+    this.isScrollable = this.props.isScrollable.bind(this)
+    this.fetchItems = this.props.fetchItems.bind(this)
+    this.onScroll = this.props.onScroll.bind(this)
     this.wrap = this.props.wrap.bind(this)
     this.input = React.createRef()
+    this.el = React.createRef()
+  }
+  componentDidMount () {
+    this.init()
+    const scrollParent = this.getScrollParent(this.el.current)
+    scrollParent.addEventListener('scroll', this.onScroll)
+    this.setState({ scrollParent: scrollParent })
+  }
+  componentWillUnmount () {
+    this.state.scrollParent.removeEventListener('scroll', this.onScroll)
+  }
+  getFetchMethod () {
+    const page = this.state.page
+    this.setState({ page: page + 1 })
+    return this.$api.users.readImages(this.props.authUser.id, { page: page })
   }
   uploadImage (event) {
     this.wrap(() => {
@@ -35,7 +60,10 @@ class ImageList extends React.Component {
   }
   render () {
     return (
-      <div className="c-image-list">
+      <div
+        className="c-image-list"
+        ref={ this.el }
+      >
         <input
           accept="image/*"
           className="u-hide"
@@ -56,4 +84,8 @@ class ImageList extends React.Component {
   }
 }
 
-export default requester(ImageList)
+const mapStateToProps = (state) => ({
+  authUser: state.auth.user
+})
+
+export default scroll(connect(mapStateToProps)(ImageList))
