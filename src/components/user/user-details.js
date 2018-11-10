@@ -28,14 +28,14 @@ class UserDetails extends React.Component {
     this.onAction = this.props.onAction.bind(this)
     this.wrap = this.props.wrap.bind(this)
   }
+  componentDidMount () {
+    this.init()
+  }
   model () {
     return this.props.user
   }
   isAuthUser () {
     return this.props.user.id === this.props.authUser.id
-  }
-  componentDidMount () {
-    this.init()
   }
   modify (params) {
     return this.$api.users.modify(this.props.user.id, params).then(() => {

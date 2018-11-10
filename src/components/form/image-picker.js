@@ -3,19 +3,19 @@ import AppModal from '@/components/app-modal'
 import '@/components/form/image-picker.scss'
 
 class ImagePicker extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      selected: this.props.value,
-      modalVisible: false
-    }
-  }
   static getDerivedStateFromProps (nextProps, prevState) {
     const nextState = {}
     if (prevState.selected !== nextProps.value) {
       nextState.selected = nextProps.value
     }
     return nextState
+  }
+  constructor (props) {
+    super(props)
+    this.state = {
+      selected: this.props.value,
+      modalVisible: false
+    }
   }
   bannerSrc () {
     return this.$helpers.imageSrc(this.props.value) || this.props.blank

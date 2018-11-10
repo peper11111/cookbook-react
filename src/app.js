@@ -13,6 +13,13 @@ class App extends React.Component {
     }
     this.wrap = this.props.wrap.bind(this)
   }
+  componentDidMount () {
+    // Because history listener is not called on app start
+    this.$helpers.checkNavigation()
+    if (this.props.loggedIn) {
+      this.fetchGlobalData()
+    }
+  }
   requiresAuth () {
     return this.$helpers.requiresAuth(this.props.history.location.pathname)
   }
@@ -20,13 +27,6 @@ class App extends React.Component {
     this.wrap(() => {
       return this.$helpers.fetchGlobalData()
     })
-  }
-  componentDidMount () {
-    // Because history listener is not called on app start
-    this.$helpers.checkNavigation()
-    if (this.props.loggedIn) {
-      this.fetchGlobalData()
-    }
   }
   render () {
     if (!this.state.pending) {

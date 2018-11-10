@@ -13,15 +13,15 @@ class UserPage extends React.Component {
     }
     this.wrap = this.props.wrap.bind(this)
   }
+  componentDidMount () {
+    this.fetchUser()
+  }
   fetchUser () {
     this.wrap(() => {
       return this.$api.users.read(this.props.match.params.id).then((value) => {
         this.props.dispatchSetUser(value.data)
       })
     })
-  }
-  componentDidMount () {
-    this.fetchUser()
   }
   render () {
     if (!this.state.pending) {
