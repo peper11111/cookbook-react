@@ -10,6 +10,13 @@ class ImagePicker extends React.Component {
       modalVisible: false
     }
   }
+  static getDerivedStateFromProps (nextProps, prevState) {
+    const nextState = {}
+    if (prevState.selected !== nextProps.value) {
+      nextState.selected = nextProps.value
+    }
+    return nextState
+  }
   bannerSrc () {
     return this.$helpers.imageSrc(this.props.value) || this.props.blank
   }
@@ -20,7 +27,6 @@ class ImagePicker extends React.Component {
     this.setState({ modalVisible: false })
   }
   onInput () {
-    // TODO Fix me
     this.hideModal()
     this.props.onInput(this.state.selected)
   }
