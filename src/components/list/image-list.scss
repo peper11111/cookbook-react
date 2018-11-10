@@ -1,0 +1,25 @@
+@import '../../assets/styles/mixins';
+@import '../../assets/styles/variables';
+
+.c-image-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+
+  &__new {
+    @include box-elevation;
+    @include box-elevation-hover;
+    width: 200px;
+    height: 200px;
+    margin: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .material-icons {
+      font-size: 64px;
+      color: $color-text-primary;
+    }
+  }
+}

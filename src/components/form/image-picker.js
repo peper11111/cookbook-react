@@ -1,5 +1,6 @@
 import React from 'react'
 import AppModal from '@/components/app-modal'
+import ImageList from '@/components/list/image-list'
 import '@/components/form/image-picker.scss'
 
 class ImagePicker extends React.Component {
@@ -68,7 +69,7 @@ class ImagePicker extends React.Component {
               <h1>{ this.$i18n.t('list.images') }</h1>
             }
             body={
-              <div/>
+              <ImageList/>
             }
             footer={
               <div>

@@ -47,7 +47,7 @@ class ResetPage extends React.Component {
             >
               <input
                 className="o-form__input o-form__input--full"
-                onChange={ (event) => this.setState({ login: event.target.value })}
+                onChange={ (event) => this.setState({ login: event.target.value }) }
                 placeholder={ this.$i18n.t('form.login') }
                 type="text"
                 value={ this.state.login }
