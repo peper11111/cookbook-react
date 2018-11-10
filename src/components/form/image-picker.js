@@ -69,7 +69,10 @@ class ImagePicker extends React.Component {
               <h1>{ this.$i18n.t('list.images') }</h1>
             }
             body={
-              <ImageList/>
+              <ImageList
+                value={ this.state.selected }
+                onInput={ (id) => this.setState({ selected: id }) }
+              />
             }
             footer={
               <div>
