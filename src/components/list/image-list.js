@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import config from '@/config'
 import scroll from '@/hoc/scroll'
+import ImageItem from '@/components/list/image-item'
 import '@/components/list/image-list.scss'
 
 class ImageList extends React.Component {
@@ -53,7 +54,27 @@ class ImageList extends React.Component {
       return this.$api.uploads.create(formData).then(() => {
         this.$notify.success('image-created')
       })
+    }).then(() => {
+      this.init()
     })
+  }
+  deleteImage (id) {
+    this.wrap(() => {
+      if (!window.confirm(this.$i18n.t('list.image-delete'))) {
+        return Promise.resolve()
+      }
+      if (this.value === id) {
+        this.props.onInput(null)
+      }
+      return this.$api.uploads.delete(id).then(() => {
+        this.$notify.success('image-deleted')
+      })
+    }).then(() => {
+      this.init()
+    })
+  }
+  selectImage (id) {
+    this.props.onInput(id)
   }
   triggerInput () {
     this.input.current.click()
@@ -79,6 +100,15 @@ class ImageList extends React.Component {
             add_circle_outline
           </i>
         </div>
+        { this.state.items && this.state.items.map((image) => (
+          <ImageItem
+            key={ image.id }
+            image={ image }
+            selected={ this.props.value === image.id }
+            onSelect={ () => this.selectImage(image.id) }
+            onDelete={ () => this.deleteImage(image.id) }
+          />
+        )) }
       </div>
     )
   }
