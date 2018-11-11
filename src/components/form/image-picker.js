@@ -4,19 +4,17 @@ import ImageList from '@/components/list/image-list'
 import '@/components/form/image-picker.scss'
 
 class ImagePicker extends React.Component {
-  static getDerivedStateFromProps (nextProps, prevState) {
-    const nextState = {}
-    if (prevState.selected !== nextProps.value) {
-      nextState.selected = nextProps.value
-    }
-    return nextState
-  }
   constructor (props) {
     super(props)
     this.state = {
       selected: this.props.value,
       modalVisible: false
     }
+  }
+  componentWillReceiveProps (nextProps) {
+    this.setState({
+      selected: nextProps.value
+    })
   }
   bannerSrc () {
     return this.$helpers.imageSrc(this.props.value) || this.props.blank
