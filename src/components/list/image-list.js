@@ -34,9 +34,10 @@ class ImageList extends React.Component {
     this.state.scrollParent.removeEventListener('scroll', this.onScroll)
   }
   getFetchMethod () {
-    const page = this.state.page
-    this.setState({ page: page + 1 })
-    return this.$api.users.readImages(this.props.authUser.id, { page: page })
+    return this.$api.users.readImages(this.props.authUser.id, { page: this.state.page }).then((value) => {
+      this.setState({ page: this.state.page + 1 })
+      return value
+    })
   }
   uploadImage (event) {
     this.wrap(() => {

@@ -31,16 +31,17 @@ export default function (WrappedComponent) {
         done: false,
         items: [],
         page: 1
+      }, () => {
+        this.fetchItems()
       })
-      this.fetchItems()
     }
     fetchItems () {
       this.wrap(() => {
         return this.getFetchMethod().then((value) => {
-          this.setState({ items: [ ...this.state.items, ...value.data ] })
-          if (value.data.length < config.pageSize) {
-            this.setState({ done: true })
-          }
+          this.setState({
+            items: [ ...this.state.items, ...value.data ],
+            done: value.data.length < config.pageSize
+          })
         })
       })
     }
