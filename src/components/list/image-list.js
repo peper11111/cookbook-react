@@ -65,7 +65,7 @@ class ImageList extends React.Component {
         return Promise.resolve()
       }
       if (this.value === id) {
-        this.props.onInput(null)
+        this.props.onChange(null)
       }
       return this.$api.uploads.delete(id).then(() => {
         this.$notify.success('image-deleted')
@@ -75,7 +75,7 @@ class ImageList extends React.Component {
     })
   }
   selectImage (id) {
-    this.props.onInput(id)
+    this.props.onChange(id)
   }
   triggerInput () {
     this.input.current.click()

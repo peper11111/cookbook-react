@@ -25,9 +25,9 @@ class ImagePicker extends React.Component {
   hideModal () {
     this.setState({ modalVisible: false })
   }
-  onInput () {
+  onChange () {
     this.hideModal()
-    this.props.onInput(this.state.selected)
+    this.props.onChange(this.state.selected)
   }
   render () {
     return (
@@ -52,7 +52,7 @@ class ImagePicker extends React.Component {
         }
         { !this.props.disabled && this.props.value &&
           <div
-            onClick={ () => this.props.onInput() }
+            onClick={ () => this.props.onChange(null) }
             className="c-image-picker__clear"
           >
             <i className="material-icons">
@@ -69,7 +69,7 @@ class ImagePicker extends React.Component {
             body={
               <ImageList
                 value={ this.state.selected }
-                onInput={ (id) => this.setState({ selected: id }) }
+                onChange={ (id) => this.setState({ selected: id }) }
               />
             }
             footer={
@@ -82,7 +82,7 @@ class ImagePicker extends React.Component {
                 </div>
                 <div
                   className="o-button o-button__accent"
-                  onClick={ () => this.onInput() }
+                  onClick={ () => this.onChange() }
                 >
                   { this.$i18n.t('global.select') }
                 </div>

@@ -1,8 +1,8 @@
 import React from 'react'
 
 class FormInput extends React.Component {
-  onInput (event) {
-    this.props.onInput(event.target.value)
+  onChange (event) {
+    this.props.onChange(event.target.value)
   }
   render () {
     if (this.props.disabled) {
@@ -18,7 +18,7 @@ class FormInput extends React.Component {
           maxLength={ this.props.maxlength || 255 }
           placeholder={ this.props.placeholder }
           value={ this.props.value }
-          onChange={ (event) => this.onInput(event) }
+          onChange={ (event) => this.onChange(event) }
         />
       )
     }

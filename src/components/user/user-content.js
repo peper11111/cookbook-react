@@ -64,7 +64,7 @@ class UserContent extends React.Component {
         </div>
         <FormInput
           value={ this.props.models.name }
-          onInput={ (value) => this.props.onChange({ name: value }) }
+          onChange={ (value) => this.props.onChange({ name: value }) }
           className="c-user-content__row c-user-content__name"
           disabled={ this.props.previewMode }
           placeholder={ this.$i18n.t('user.placeholder.name') }

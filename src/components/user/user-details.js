@@ -66,7 +66,7 @@ class UserDetails extends React.Component {
           className="c-user-details__banner"
           disabled={ this.previewMode() }
           value={ this.state.models.bannerId }
-          onInput={ (id) => this.setState({ models: { ...this.state.models, bannerId: id } }) }
+          onChange={ (id) => this.setState({ models: { ...this.state.models, bannerId: id } }) }
         />
         <div className="c-user-details__wrapper">
           <ImagePicker
@@ -74,7 +74,7 @@ class UserDetails extends React.Component {
             className="c-user-details__avatar"
             disabled={ this.previewMode() }
             value={ this.state.models.avatarId }
-            onInput={ (id) => this.setState({ models: { ...this.state.models, avatarId: id } }) }
+            onChange={ (id) => this.setState({ models: { ...this.state.models, avatarId: id } }) }
           />
           <UserContent
             models={ this.state.models }
