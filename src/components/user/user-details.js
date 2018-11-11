@@ -59,14 +59,14 @@ class UserDetails extends React.Component {
           editMode={ this.editMode() }
           createMode={ this.createMode() }
           previewMode={ this.previewMode() }
-          onAction={ this.onAction }
+          onAction={ (type) => this.onAction(type) }
         />
         <ImagePicker
           blank={ config.blankBanner }
           className="c-user-details__banner"
           disabled={ this.previewMode() }
           value={ this.state.models.bannerId }
-          onInput={ (bannerId) => this.setState({ models: { ...this.state.models, bannerId: bannerId } }) }
+          onInput={ (id) => this.setState({ models: { ...this.state.models, bannerId: id } }) }
         />
         <div className="c-user-details__wrapper">
           <ImagePicker
@@ -74,9 +74,12 @@ class UserDetails extends React.Component {
             className="c-user-details__avatar"
             disabled={ this.previewMode() }
             value={ this.state.models.avatarId }
-            onInput={ (avatarId) => this.setState({ models: { ...this.state.models, avatarId: avatarId } }) }
+            onInput={ (id) => this.setState({ models: { ...this.state.models, avatarId: id } }) }
           />
-          <UserContent className="c-user-details__content"/>
+          <UserContent
+            previewMode={ this.previewMode() }
+            className="c-user-details__content"
+          />
         </div>
       </div>
     )
