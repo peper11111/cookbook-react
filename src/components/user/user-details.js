@@ -65,8 +65,17 @@ class UserDetails extends React.Component {
           className="c-user-details__banner"
           disabled={ this.previewMode() }
           value={ this.state.models.bannerId }
-          onInput={ (bannerId) => this.setState({ models: { ...this.state.models, bannerId } }) }
+          onInput={ (bannerId) => this.setState({ models: { ...this.state.models, bannerId: bannerId } }) }
         />
+        <div className="c-user-details__wrapper">
+          <ImagePicker
+            blank={ config.blankAvatar }
+            className="c-user-details__avatar"
+            disabled={ this.previewMode() }
+            value={ this.state.models.avatarId }
+            onInput={ (avatarId) => this.setState({ models: { ...this.state.models, avatarId: avatarId } }) }
+          />
+        </div>
       </div>
     )
   }
