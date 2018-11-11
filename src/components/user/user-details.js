@@ -77,6 +77,8 @@ class UserDetails extends React.Component {
             onInput={ (id) => this.setState({ models: { ...this.state.models, avatarId: id } }) }
           />
           <UserContent
+            models={ this.state.models }
+            onChange={ (models) => this.setState({ models: { ...this.state.models, ...models } }) }
             previewMode={ this.previewMode() }
             className="c-user-details__content"
           />

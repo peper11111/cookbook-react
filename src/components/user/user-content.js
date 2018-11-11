@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import FormInput from '@/components/form/form-input'
 import requester from '@/hoc/requester'
 import { setUser } from '@/store/actions'
 import '@/components/user/user-content.scss'
@@ -61,6 +62,13 @@ class UserContent extends React.Component {
             { this.$i18n.t('user.followed') }
           </span>
         </div>
+        <FormInput
+          value={ this.props.models.name }
+          onInput={ (value) => this.props.onChange({ name: value }) }
+          className="c-user-content__row c-user-content__name"
+          disabled={ this.props.previewMode }
+          placeholder={ this.$i18n.t('user.placeholder.name') }
+        />
       </div>
     )
   }
