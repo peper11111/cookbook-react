@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import config from '@/config'
 import DetailActions from '@/components/detail-actions'
 import ImagePicker from '@/components/form/image-picker'
+import UserContent from '@/components/user/user-content'
 import editor from '@/hoc/editor'
 import { setUser } from '@/store/actions'
 import '@/components/user/user-details.scss'
@@ -75,6 +76,7 @@ class UserDetails extends React.Component {
             value={ this.state.models.avatarId }
             onInput={ (avatarId) => this.setState({ models: { ...this.state.models, avatarId: avatarId } }) }
           />
+          <UserContent className="c-user-details__content"/>
         </div>
       </div>
     )
