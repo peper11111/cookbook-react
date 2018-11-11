@@ -9,6 +9,7 @@ class UserPage extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
+      userId: this.props.match.params.id,
       pending: this.props.pending
     }
     this.wrap = this.props.wrap.bind(this)
@@ -16,9 +17,18 @@ class UserPage extends React.Component {
   componentDidMount () {
     this.fetchUser()
   }
+  componentWillReceiveProps (newProps) {
+    if (newProps.match.params.id !== this.state.userId) {
+      this.setState({
+        userId: newProps.match.params.id
+      }, () => {
+        this.fetchUser()
+      })
+    }
+  }
   fetchUser () {
     this.wrap(() => {
-      return this.$api.users.read(this.props.match.params.id).then((value) => {
+      return this.$api.users.read(this.state.userId).then((value) => {
         this.props.dispatchSetUser(value.data)
       })
     })
