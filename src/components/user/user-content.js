@@ -41,6 +41,26 @@ class UserContent extends React.Component {
             </button>
           }
         </div>
+        <div className="c-user-content__row">
+          <span className="c-user-content__value">
+            { this.props.user.recipesCount || 0 }
+          </span>
+          <span className="c-user-content__label">
+            { this.$i18n.t('user.recipes') }
+          </span>
+          <span className="c-user-content__value">
+            { this.props.user.followersCount || 0 }
+          </span>
+          <span className="c-user-content__label">
+            { this.$i18n.t('user.followers') }
+          </span>
+          <span className="c-user-content__value">
+            { this.props.user.followedCount || 0 }
+          </span>
+          <span className="c-user-content__label">
+            { this.$i18n.t('user.followed') }
+          </span>
+        </div>
       </div>
     )
   }
