@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import FormInput from '@/components/form/form-input'
+import FormTextarea from '@/components/form/form-textarea'
 import requester from '@/hoc/requester'
 import { setUser } from '@/store/actions'
 import '@/components/user/user-content.scss'
@@ -68,6 +69,13 @@ class UserContent extends React.Component {
           className="c-user-content__row c-user-content__name"
           disabled={ this.props.previewMode }
           placeholder={ this.$i18n.t('user.placeholder.name') }
+        />
+        <FormTextarea
+          value={ this.props.models.biography }
+          onChange={ (value) => this.props.onChange({ biography: value }) }
+          className="c-user-content__row"
+          disabled={ this.props.previewMode }
+          placeholder={ this.$i18n.t('user.placeholder.biography') }
         />
       </div>
     )

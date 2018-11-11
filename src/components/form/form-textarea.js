@@ -1,6 +1,6 @@
 import React from 'react'
 
-class FormInput extends React.Component {
+class FormTextarea extends React.Component {
   render () {
     if (this.props.disabled) {
       return (
@@ -10,9 +10,10 @@ class FormInput extends React.Component {
       )
     } else {
       return (
-        <input
-          className={ `o-form__input ${this.props.className}` }
+        <textarea
+          className={ `o-form__textarea ${this.props.className}` }
           maxLength={ this.props.maxlength || 255 }
+          rows={ this.props.rows || 3 }
           placeholder={ this.props.placeholder }
           value={ this.props.value }
           onChange={ (event) => this.props.onChange(event.target.value) }
@@ -22,4 +23,4 @@ class FormInput extends React.Component {
   }
 }
 
-export default FormInput
+export default FormTextarea
