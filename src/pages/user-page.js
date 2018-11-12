@@ -3,17 +3,16 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import RecipeList from '@/components/list/recipe-list'
 import UserDetails from '@/components/user/user-details'
-import requester from '@/hoc/requester'
+import Requester from '@/mixins/requester'
 import { setUser } from '@/store/actions'
 
-class UserPage extends React.Component {
+class UserPage extends Requester {
   constructor (props) {
     super(props)
     this.state = {
-      userId: this.props.match.params.id,
-      pending: this.props.pending
+      ...this.state,
+      userId: this.props.match.params.id
     }
-    this.wrap = this.props.wrap.bind(this)
   }
   componentDidMount () {
     this.fetchUser()
@@ -67,4 +66,4 @@ const mapDispatchToProps = (dispatch) => ({
   dispatchSetUser: (user) => dispatch(setUser(user))
 })
 
-export default requester(withRouter(connect(mapStateToProps, mapDispatchToProps)(UserPage)))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserPage))

@@ -2,18 +2,11 @@ import React from 'react'
 import { connect } from 'react-redux'
 import FormInput from '@/components/form/form-input'
 import FormTextarea from '@/components/form/form-textarea'
-import requester from '@/hoc/requester'
+import Requester from '@/mixins/requester'
 import { setUser } from '@/store/actions'
 import '@/components/user/user-content.scss'
 
-class UserContent extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      pending: this.props.pending
-    }
-    this.wrap = this.props.wrap.bind(this)
-  }
+class UserContent extends Requester {
   canPerformAction () {
     return this.props.previewMode && this.props.authUser.id !== this.props.user.id
   }
@@ -91,4 +84,4 @@ const mapDispatchToProps = (dispatch) => ({
   dispatchSetUser: (user) => dispatch(setUser(user))
 })
 
-export default requester(connect(mapStateToProps, mapDispatchToProps)(UserContent))
+export default connect(mapStateToProps, mapDispatchToProps)(UserContent)

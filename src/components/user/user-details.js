@@ -4,16 +4,15 @@ import config from '@/config'
 import DetailActions from '@/components/detail-actions'
 import ImagePicker from '@/components/form/image-picker'
 import UserContent from '@/components/user/user-content'
-import editor from '@/hoc/editor'
+import Editor from '@/mixins/editor'
 import { setUser } from '@/store/actions'
 import '@/components/user/user-details.scss'
 
-class UserDetails extends React.Component {
+class UserDetails extends Editor {
   constructor (props) {
     super(props)
     this.state = {
-      pending: this.props.pending,
-      mode: this.props.mode,
+      ...this.state,
       models: {
         avatarId: null,
         bannerId: null,
@@ -21,16 +20,6 @@ class UserDetails extends React.Component {
         biography: null
       }
     }
-    this.editMode = this.props.editMode.bind(this)
-    this.createMode = this.props.createMode.bind(this)
-    this.previewMode = this.props.previewMode.bind(this)
-    this.init = this.props.init.bind(this)
-    this.getUpdatedParams = this.props.getUpdatedParams.bind(this)
-    this.onAction = this.props.onAction.bind(this)
-    this.wrap = this.props.wrap.bind(this)
-  }
-  componentDidMount () {
-    this.init()
   }
   model () {
     return this.props.user
@@ -97,4 +86,4 @@ const mapDispatchToProps = (dispatch) => ({
   dispatchSetUser: (user) => dispatch(setUser(user))
 })
 
-export default editor(connect(mapStateToProps, mapDispatchToProps)(UserDetails))
+export default connect(mapStateToProps, mapDispatchToProps)(UserDetails)

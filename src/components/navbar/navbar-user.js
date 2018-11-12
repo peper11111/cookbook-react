@@ -3,18 +3,17 @@ import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 import AppDropdown from '@/components/app-dropdown'
 import config from '@/config'
-import requester from '@/hoc/requester'
+import Requester from '@/mixins/requester'
 import { signOut } from '@/store/actions'
 import '@/components/navbar/navbar-user.scss'
 
-class NavbarUser extends React.Component {
+class NavbarUser extends Requester {
   constructor (props) {
     super(props)
     this.state = {
-      dropdownVisible: false,
-      pending: this.props.pending
+      ...this.state,
+      dropdownVisible: false
     }
-    this.wrap = this.props.wrap.bind(this)
   }
   imageSrc () {
     return this.$helpers.thumbnailSrc(this.props.authUser.avatarId) || config.blankAvatar
@@ -96,4 +95,4 @@ const mapDispatchToProps = (dispatch) => ({
   dispatchSignOut: () => dispatch(signOut())
 })
 
-export default requester(withRouter(connect(mapStateToProps, mapDispatchToProps)(NavbarUser)))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavbarUser))
