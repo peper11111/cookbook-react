@@ -39,6 +39,12 @@ class UserPage extends React.Component {
         <div className="o-page">
           <div className="o-page__wrapper">
             <UserDetails/>
+            <div className="o-page__separator"/>
+            <div className="o-page__container">
+              <h1 className="o-typography__header o-typography__header--list">
+                { this.$i18n.t('list.recipes') }
+              </h1>
+            </div>
           </div>
         </div>
       )
