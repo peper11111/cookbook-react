@@ -1,22 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import form from '@/hoc/form'
+import Form from '@/mixins/form'
 
-class RegisterPage extends React.Component {
+class RegisterPage extends Form {
   constructor (props) {
     super(props)
     this.state = {
-      done: false,
-      email: this.props.email,
-      username: this.props.username,
-      password: this.props.password,
-      passwordVisible: this.props.passwordVisible,
-      pending: this.props.pending
+      ...this.state,
+      done: false
     }
-    this.getPasswordFieldType = this.props.getPasswordFieldType.bind(this)
-    this.generatePassword = this.props.generatePassword.bind(this)
-    this.togglePassword = this.props.togglePassword.bind(this)
-    this.wrap = this.props.wrap.bind(this)
   }
   register () {
     this.wrap(() => {
@@ -128,4 +120,4 @@ class RegisterPage extends React.Component {
   }
 }
 
-export default form(RegisterPage)
+export default RegisterPage

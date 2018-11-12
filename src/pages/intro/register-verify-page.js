@@ -1,16 +1,9 @@
 import queryString from 'query-string'
 import React from 'react'
 import { withRouter } from 'react-router-dom'
-import requester from '@/hoc/requester'
+import Requester from '@/mixins/requester'
 
-class RegisterVerifyPage extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      pending: this.props.pending
-    }
-    this.wrap = this.props.wrap.bind(this)
-  }
+class RegisterVerifyPage extends Requester {
   componentDidMount () {
     this.registerVerify()
   }
@@ -32,4 +25,4 @@ class RegisterVerifyPage extends React.Component {
   }
 }
 
-export default requester(withRouter(RegisterVerifyPage))
+export default withRouter(RegisterVerifyPage)

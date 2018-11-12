@@ -2,17 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import RouterView from '@/router'
-import requester from '@/hoc/requester'
 import AppNavbar from '@/components/app-navbar'
+import Requester from '@/mixins/requester'
 
-class App extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      pending: this.props.pending
-    }
-    this.wrap = this.props.wrap.bind(this)
-  }
+class App extends Requester {
   componentDidMount () {
     // Because history listener is not called on app start
     this.$helpers.checkNavigation()
@@ -50,4 +43,4 @@ const mapStateToProps = (state) => ({
   loggedIn: state.auth.loggedIn
 })
 
-export default requester(withRouter(connect(mapStateToProps)(App)))
+export default withRouter(connect(mapStateToProps)(App))

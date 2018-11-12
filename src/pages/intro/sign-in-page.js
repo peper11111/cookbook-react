@@ -1,21 +1,9 @@
 import queryString from 'query-string'
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
-import form from '@/hoc/form'
+import Form from '@/mixins/form'
 
-class SignInPage extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      login: this.props.login,
-      password: this.props.password,
-      passwordVisible: this.props.passwordVisible,
-      pending: this.props.pending
-    }
-    this.getPasswordFieldType = this.props.getPasswordFieldType.bind(this)
-    this.togglePassword = this.props.togglePassword.bind(this)
-    this.wrap = this.props.wrap.bind(this)
-  }
+class SignInPage extends Form {
   signIn () {
     this.wrap(() => {
       const formData = new FormData()
@@ -97,4 +85,4 @@ class SignInPage extends React.Component {
   }
 }
 
-export default form(withRouter(SignInPage))
+export default withRouter(SignInPage)

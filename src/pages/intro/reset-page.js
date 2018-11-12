@@ -1,15 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import form from '@/hoc/form'
+import Form from '@/mixins/form'
 
-class ResetPage extends React.Component {
+class ResetPage extends Form {
   constructor (props) {
     super(props)
     this.state = {
-      login: this.props.login,
-      pending: this.props.pending
+      ...this.state,
+      done: false
     }
-    this.wrap = this.props.wrap.bind(this)
   }
   reset () {
     this.wrap(() => {
@@ -89,4 +88,4 @@ class ResetPage extends React.Component {
   }
 }
 
-export default form(ResetPage)
+export default ResetPage
