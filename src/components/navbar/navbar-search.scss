@@ -1,0 +1,23 @@
+@import '../../assets/styles/variables';
+
+.c-navbar-search {
+  width: 360px;
+  margin: 0 16px;
+  box-sizing: border-box;
+
+  &__input {
+    color: $color-text;
+
+    &:focus {
+      border-bottom-color: $color-text;
+    }
+
+    &::placeholder {
+      color: $color-primary-light;
+    }
+  }
+
+  &__icon {
+    color: $color-text;
+  }
+}

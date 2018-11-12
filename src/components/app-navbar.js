@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
+import NavbarSearch from '@/components/navbar/navbar-search'
 import NavbarUser from '@/components/navbar/navbar-user'
 import '@/components/app-navbar.scss'
 
@@ -24,6 +25,7 @@ class AppNavbar extends React.Component {
             { this.$i18n.t('global.app') }
           </span>
         </Link>
+        <NavbarSearch/>
         <div className="c-app-navbar__row">
           <Link
             to="/"
