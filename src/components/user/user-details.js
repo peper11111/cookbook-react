@@ -55,7 +55,7 @@ class UserDetails extends Editor {
           className="c-user-details__banner"
           disabled={ this.previewMode() }
           value={ this.state.models.bannerId }
-          onChange={ (id) => this.setState({ models: { ...this.state.models, bannerId: id } }) }
+          onChange={ (value) => this.setState({ models: { ...this.state.models, bannerId: value } }) }
         />
         <div className="c-user-details__wrapper">
           <ImagePicker
@@ -63,7 +63,7 @@ class UserDetails extends Editor {
             className="c-user-details__avatar"
             disabled={ this.previewMode() }
             value={ this.state.models.avatarId }
-            onChange={ (id) => this.setState({ models: { ...this.state.models, avatarId: id } }) }
+            onChange={ (value) => this.setState({ models: { ...this.state.models, avatarId: value } }) }
           />
           <UserContent
             models={ this.state.models }
