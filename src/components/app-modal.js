@@ -10,11 +10,11 @@ class AppModal extends React.Component {
   }
   render () {
     return (
-      <div
-        className={ `c-app-modal ${this.props.className}` }
-        onClick={ (event) => event.stopPropagation() }
-      >
-        <div className="c-app-modal__content">
+      <div className={ `c-app-modal ${this.props.className}` }>
+        <div
+          className="c-app-modal__content"
+          onClick={ (event) => event.stopPropagation() }
+        >
           <div className="c-app-modal__header">
             { this.props.header }
           </div>
