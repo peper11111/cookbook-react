@@ -34,6 +34,32 @@ class RecipeItem extends React.Component {
               { this.creationTime() }
             </span>
           </div>
+          <h1 className="c-recipe-item__title">
+            { this.props.recipe.title }
+          </h1>
+          <p className="c-recipe-item__description">
+            { this.props.recipe.description }
+          </p>
+          <div className="c-recipe-item__icons">
+            <i className="material-icons">
+              thumb_up
+            </i>
+            <span className="c-recipe-item__value">
+              { this.props.recipe.likesCount || 0 }
+            </span>
+            <i className="material-icons">
+              book
+            </i>
+            <span className="c-recipe-item__value">
+              { this.props.recipe.favouritesCount || 0 }
+            </span>
+            <i className="material-icons">
+              chat_bubble
+            </i>
+            <span className="c-recipe-item__value">
+              { this.props.recipe.commentsCount || 0 }
+            </span>
+          </div>
         </div>
       </div>
     )
