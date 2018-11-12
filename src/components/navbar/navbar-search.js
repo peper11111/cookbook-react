@@ -35,7 +35,7 @@ class NavbarSearch extends Model {
   }
   render () {
     return (
-      <div
+      <form
         className="c-navbar-search o-form"
         onSubmit={ (event) => {
           event.preventDefault()
@@ -58,7 +58,7 @@ class NavbarSearch extends Model {
             </i>
           </div>
         </div>
-      </div>
+      </form>
     )
   }
 }
