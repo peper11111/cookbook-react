@@ -52,7 +52,7 @@ class RecipeFilters extends Model {
   render () {
     return (
       <div className="c-recipe-filters">
-        <h1 className="c-recipe-filters__title">
+        <h1 className="o-typography__header">
           { this.$i18n.t('recipe.filtering') }
         </h1>
         <div className="c-recipe-filters__header">
