@@ -1,0 +1,13 @@
+.c-time-input {
+  display: flex;
+  align-items: center;
+
+  &__label {
+    padding: 0 2px;
+  }
+
+  &__value {
+    width: 42px;
+    text-align: center;
+  }
+}
