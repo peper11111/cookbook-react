@@ -70,6 +70,7 @@ class ImagePicker extends React.Component {
               <ImageList
                 value={ this.state.selected }
                 onChange={ (id) => this.setState({ selected: id }) }
+                type="user-images"
               />
             }
             footer={

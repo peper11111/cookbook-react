@@ -48,8 +48,9 @@ class Scroll extends Requester {
     this.wrap(() => {
       return this.getFetchMethod().then((value) => {
         this.setState({
+          done: value.data.length < config.pageSize,
           items: [ ...this.state.items, ...value.data ],
-          done: value.data.length < config.pageSize
+          page: this.state.page + 1
         })
       })
     })

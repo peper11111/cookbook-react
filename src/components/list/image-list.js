@@ -12,10 +12,12 @@ class ImageList extends Scroll {
     this.input = React.createRef()
   }
   getFetchMethod () {
-    return this.$api.users.readImages(this.props.authUser.id, { page: this.state.page }).then((value) => {
-      this.setState({ page: this.state.page + 1 })
-      return value
-    })
+    switch (this.props.type) {
+      case 'user-images':
+        return this.$api.users.readImages(this.props.authUser.id, { page: this.state.page })
+      default:
+        return Promise.resolve({ data: [] })
+    }
   }
   uploadImage (event) {
     this.wrap(() => {
