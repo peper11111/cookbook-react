@@ -27,7 +27,7 @@ class RecipeFilters extends Model {
     }
   }
   model () {
-    return queryString.parse(this.props.history.location.search)
+    return queryString.parse(this.state.search)
   }
   cuisines () {
     return this.props.cuisines.map((cuisine) => {
