@@ -44,7 +44,8 @@ class NavbarSearch extends Model {
       >
         <div className="o-form__wrapper">
           <input
-            value={ this.state.models.query }
+            value={ this.state.models.query || '' }
+            onChange={ (event) => this.setState({ models: { ...this.state.models, query: event.target.value } }) }
             placeholder={ this.$i18n.t('form.search') }
             className="c-navbar-search__input o-form__input o-form__input--full"
           />
