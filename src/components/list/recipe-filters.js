@@ -37,6 +37,14 @@ class RecipeFilters extends Model {
       }
     })
   }
+  categories () {
+    return this.props.categories.map((category) => {
+      return {
+        value: category.id,
+        label: category.name
+      }
+    })
+  }
   clearFiltering () {
     this.props.history.push({
       pathname: this.props.history.location.pathname,
@@ -61,7 +69,15 @@ class RecipeFilters extends Model {
         <FormSelect
           value={ this.state.models.cuisineId }
           options={ this.cuisines() }
-          onChange={ (cuisineId) => this.setState({ models: { ...this.state.models, cuisineId: cuisineId } }) }
+          onChange={ (id) => this.setState({ models: { ...this.state.models, cuisineId: id } }) }
+        />
+        <div className="c-recipe-filters__header">
+          { this.$i18n.t('recipe.category-type') }
+        </div>
+        <FormSelect
+          value={ this.state.models.categoryId }
+          options={ this.categories() }
+          onChange={ (id) => this.setState({ models: { ...this.state.models, categoryId: id } }) }
         />
         <div className="c-recipe-filters__row c-recipe-filters__buttons">
           <button
@@ -83,7 +99,8 @@ class RecipeFilters extends Model {
 }
 
 const mapStateToProps = (state) => ({
-  cuisines: state.cuisines
+  cuisines: state.cuisines,
+  categories: state.categories
 })
 
 export default withRouter(connect(mapStateToProps)(RecipeFilters))
