@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom'
 import FormSelect from '@/components/form/form-select'
 import FormInput from '@/components/form/form-input'
 import RatingBar from '@/components/form/rating-bar'
+import TimeInput from '@/components/form/time-input'
 import Model from '@/mixins/model'
 import '@/components/list/recipe-filters.scss'
 
@@ -20,7 +21,9 @@ class RecipeFilters extends Model {
         minDifficulty: null,
         maxDifficulty: null,
         minPlates: null,
-        maxPlates: null
+        maxPlates: null,
+        minPreparationTime: null,
+        maxPreparationTime: null
       }
     }
   }
@@ -126,6 +129,27 @@ class RecipeFilters extends Model {
           <FormInput
             value={ this.state.models.maxPlates }
             onChange={ (value) => this.setState({ models: { ...this.state.models, maxPlates: value } }) }
+          />
+        </div>
+        <div className="c-recipe-filters__header">
+          { this.$i18n.t('recipe.preparation-time') }
+        </div>
+        <div className="c-recipe-filters__row">
+          <span className="c-recipe-filters__label">
+            { this.$i18n.t('global.from') }
+          </span>
+          <TimeInput
+            value={ this.state.models.minPreparationTime }
+            onChange={ (value) => this.setState({ models: { ...this.state.models, minPreparationTime: value } }) }
+          />
+        </div>
+        <div className="c-recipe-filters__row">
+          <span className="c-recipe-filters__label">
+            { this.$i18n.t('global.to') }
+          </span>
+          <TimeInput
+            value={ this.state.models.maxPreparationTime }
+            onChange={ (value) => this.setState({ models: { ...this.state.models, maxPreparationTime: value } }) }
           />
         </div>
         <div className="c-recipe-filters__row c-recipe-filters__buttons">
