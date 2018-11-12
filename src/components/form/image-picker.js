@@ -12,9 +12,7 @@ class ImagePicker extends React.Component {
     }
   }
   componentWillReceiveProps (nextProps) {
-    this.setState({
-      selected: nextProps.value
-    })
+    this.setState({ selected: nextProps.value })
   }
   bannerSrc () {
     return this.$helpers.imageSrc(this.props.value) || this.props.blank
