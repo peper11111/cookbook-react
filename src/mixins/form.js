@@ -25,7 +25,7 @@ class Form extends Requester {
       password += chars.charAt(Math.floor(Math.random() * chars.length))
     }
     this.setState({
-      password,
+      password: password,
       passwordVisible: true
     })
   }

@@ -1,37 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import config from '@/config'
-import scroll from '@/hoc/scroll'
 import ImageItem from '@/components/list/image-item'
+import config from '@/config'
+import Scroll from '@/mixins/scroll'
 import '@/components/list/image-list.scss'
 
-class ImageList extends React.Component {
+class ImageList extends Scroll {
   constructor (props) {
     super(props)
-    this.state = {
-      done: this.props.done,
-      items: this.props.items,
-      page: this.props.page,
-      scrollParent: this.props.scrollParent,
-      pending: this.props.pending
-    }
-    this.init = this.props.init.bind(this)
-    this.getScrollParent = this.props.getScrollParent.bind(this)
-    this.isScrollable = this.props.isScrollable.bind(this)
-    this.fetchItems = this.props.fetchItems.bind(this)
-    this.onScroll = this.props.onScroll.bind(this)
-    this.wrap = this.props.wrap.bind(this)
-    this.input = React.createRef()
     this.el = React.createRef()
-  }
-  componentDidMount () {
-    this.init()
-    const scrollParent = this.getScrollParent(this.el.current)
-    scrollParent.addEventListener('scroll', this.onScroll)
-    this.setState({ scrollParent: scrollParent })
-  }
-  componentWillUnmount () {
-    this.state.scrollParent.removeEventListener('scroll', this.onScroll)
+    this.input = React.createRef()
   }
   getFetchMethod () {
     return this.$api.users.readImages(this.props.authUser.id, { page: this.state.page }).then((value) => {
@@ -119,4 +97,4 @@ const mapStateToProps = (state) => ({
   authUser: state.auth.user
 })
 
-export default scroll(connect(mapStateToProps)(ImageList))
+export default connect(mapStateToProps)(ImageList)
