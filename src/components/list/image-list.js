@@ -82,7 +82,7 @@ class ImageList extends Scroll {
               add_circle_outline
             </i>
           </div>
-          { this.state.items && this.state.items.map((image) => (
+          { this.state.items.map((image) => (
             <ImageItem
               key={ image.id }
               image={ image }

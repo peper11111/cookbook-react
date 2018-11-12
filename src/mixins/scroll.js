@@ -6,9 +6,9 @@ class Scroll extends Requester {
     super(props)
     this.state = {
       ...this.state,
-      done: null,
-      items: null,
-      page: null,
+      done: false,
+      items: [],
+      page: 1,
       scrollParent: null
     }
     this.onScroll = this.onScroll.bind(this)
@@ -20,7 +20,9 @@ class Scroll extends Requester {
     })
   }
   componentWillUnmount () {
-    this.state.scrollParent.removeEventListener('scroll', this.onScroll)
+    if (this.state.scrollParent) {
+      this.state.scrollParent.removeEventListener('scroll', this.onScroll)
+    }
   }
   getScrollParent (element) {
     if (!element || element === document.body) {
