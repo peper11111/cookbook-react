@@ -1,6 +1,6 @@
 import moment from 'moment'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import config from '@/config'
 import '@/components/list/recipe-item.scss'
 
@@ -9,22 +9,35 @@ class RecipeItem extends React.Component {
     return this.$helpers.thumbnailSrc(this.props.recipe.bannerId) || config.blankBanner
   }
   creationTime () {
-    return moment(this.recipe.creationTime).fromNow()
+    return moment(this.props.recipe.creationTime).fromNow()
   }
   render () {
     return (
-      <Link
+      <div
         className={ `c-recipe-item ${this.props.layout === 'grid' ? 'c-recipe-item--grid' : ''}` }
-        to={ `/recipe/${this.props.recipe.id}` }
+        onClick={ () => this.props.history.push(`/recipe/${this.props.recipe.id}`) }
       >
         <img
           alt=""
           className="c-recipe-item__image"
           src={ this.bannerSrc() }
         />
-      </Link>
+        <div className="c-recipe-item__wrapper">
+          <div className="c-recipe-item__row">
+            <span
+              className="c-recipe-item__author"
+              onClick={ () => this.props.history.push(`/user/${this.props.recipe.author.id}`) }
+            >
+              { this.props.recipe.author.username }
+            </span>
+            <span className="c-recipe-item__time">
+              { this.creationTime() }
+            </span>
+          </div>
+        </div>
+      </div>
     )
   }
 }
 
-export default RecipeItem
+export default withRouter(RecipeItem)
