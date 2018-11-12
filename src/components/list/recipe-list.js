@@ -1,6 +1,6 @@
 import queryString from 'query-string'
 import React from 'react'
-import { withRouter } from 'react-router'
+import { withRouter } from 'react-router-dom'
 import RecipeButtons from '@/components/list/recipe-buttons'
 import RecipeItem from '@/components/list/recipe-item'
 import Scroll from '@/mixins/scroll'
@@ -70,7 +70,7 @@ class RecipeList extends Scroll {
           className="c-recipe-list__text"
           ref={ this.el }
         >
-          { this.$i18n.t('list.no-recipe') }
+          { this.$i18n.t('list.no-recipes') }
         </div>
       )
     }
