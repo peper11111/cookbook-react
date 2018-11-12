@@ -25,7 +25,7 @@ class UserDetails extends React.Component {
     this.createMode = this.props.createMode.bind(this)
     this.previewMode = this.props.previewMode.bind(this)
     this.init = this.props.init.bind(this)
-    this.getParams = this.props.getParams.bind(this)
+    this.getUpdatedParams = this.props.getUpdatedParams.bind(this)
     this.onAction = this.props.onAction.bind(this)
     this.wrap = this.props.wrap.bind(this)
   }

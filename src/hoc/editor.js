@@ -1,4 +1,5 @@
 import React from 'react'
+import model from '@/hoc/model'
 import requester from '@/hoc/requester'
 
 const Mode = {
@@ -24,28 +25,6 @@ export default function (WrappedComponent) {
     previewMode () {
       return this.state.mode === Mode.PREVIEW
     }
-    init () {
-      const models = {}
-      for (const key in this.state.models) {
-        if (!this.state.models.hasOwnProperty(key)) {
-          continue
-        }
-        models[key] = this.model()[key]
-      }
-      this.setState({ models })
-    }
-    getParams () {
-      const params = {}
-      for (const key in this.state.models) {
-        if (!this.state.models.hasOwnProperty(key)) {
-          continue
-        }
-        if (this.state.models[key] !== this.model()[key]) {
-          params[key] = this.state.models[key]
-        }
-      }
-      return params
-    }
     onAction (action) {
       switch (action) {
         case 'edit':
@@ -57,12 +36,12 @@ export default function (WrappedComponent) {
           break
         case 'create':
           this.wrap(() => {
-            return this.create(this.getParams())
+            return this.create(this.getUpdatedParams())
           })
           break
         case 'save':
           this.wrap(() => {
-            return this.modify(this.getParams())
+            return this.modify(this.getUpdatedParams())
           }).then(() => {
             this.setState({ mode: Mode.PREVIEW })
           })
@@ -84,12 +63,10 @@ export default function (WrappedComponent) {
           createMode={ this.createMode }
           editMode={ this.editMode }
           previewMode={ this.previewMode }
-          init={ this.init }
-          getParams={ this.getParams }
           onAction={ this.onAction }
         />
       )
     }
   }
-  return requester(Editor)
+  return model(requester(Editor))
 }
