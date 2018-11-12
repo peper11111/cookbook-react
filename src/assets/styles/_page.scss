@@ -19,11 +19,24 @@
 
   &__wrapper {
     width: 1000px;
-    margin: 16px auto 64px auto;
+    margin: 0 auto 64px auto;
 
-    &--top {
-      margin-top: 0;
+    &--list {
+      margin-top: 16px;
+      display: flex;
     }
+  }
+
+  &__sidebar {
+    width: 324px;
+    padding-top: 16px;
+    padding-left: 24px;
+    flex-shrink: 0;
+  }
+
+  &__container {
+    padding: 0 32px;
+    flex-grow: 1;
   }
 
   &__separator {

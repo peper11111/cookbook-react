@@ -37,7 +37,7 @@ class UserPage extends React.Component {
     if (!this.state.pending) {
       return (
         <div className="o-page">
-          <div className="o-page__wrapper o-page__wrapper--top">
+          <div className="o-page__wrapper">
             <UserDetails/>
           </div>
         </div>
