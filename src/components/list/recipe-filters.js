@@ -3,6 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import FormSelect from '@/components/form/form-select'
+import RatingBar from '@/components/form/rating-bar'
 import Model from '@/mixins/model'
 import '@/components/list/recipe-filters.scss'
 
@@ -13,7 +14,10 @@ class RecipeFilters extends Model {
       ...this.state,
       search: this.props.history.location.search,
       models: {
-        cuisineId: null
+        cuisineId: null,
+        categoryId: null,
+        minDifficulty: null,
+        maxDifficulty: null
       }
     }
   }
@@ -69,7 +73,7 @@ class RecipeFilters extends Model {
         <FormSelect
           value={ this.state.models.cuisineId }
           options={ this.cuisines() }
-          onChange={ (id) => this.setState({ models: { ...this.state.models, cuisineId: id } }) }
+          onChange={ (value) => this.setState({ models: { ...this.state.models, cuisineId: value } }) }
         />
         <div className="c-recipe-filters__header">
           { this.$i18n.t('recipe.category-type') }
@@ -77,8 +81,29 @@ class RecipeFilters extends Model {
         <FormSelect
           value={ this.state.models.categoryId }
           options={ this.categories() }
-          onChange={ (id) => this.setState({ models: { ...this.state.models, categoryId: id } }) }
+          onChange={ (value) => this.setState({ models: { ...this.state.models, categoryId: value } }) }
         />
+        <div className="c-recipe-filters__header">
+          { this.$i18n.t('recipe.difficulty') }
+        </div>
+        <div className="c-recipe-filters__row">
+          <span className="c-recipe-filters__label">
+            { this.$i18n.t('global.from') }
+          </span>
+          <RatingBar
+            value={ this.state.models.minDifficulty }
+            onChange={ (value) => this.setState({ models: { ...this.state.models, minDifficulty: value } }) }
+          />
+        </div>
+        <div className="c-recipe-filters__row">
+          <span className="c-recipe-filters__label">
+            { this.$i18n.t('global.to') }
+          </span>
+          <RatingBar
+            value={ this.state.models.maxDifficulty }
+            onChange={ (value) => this.setState({ models: { ...this.state.models, maxDifficulty: value } }) }
+          />
+        </div>
         <div className="c-recipe-filters__row c-recipe-filters__buttons">
           <button
             onClick={ () => this.clearFiltering() }
