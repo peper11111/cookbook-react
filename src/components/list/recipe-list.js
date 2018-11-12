@@ -2,6 +2,7 @@ import queryString from 'query-string'
 import React from 'react'
 import { withRouter } from 'react-router'
 import RecipeButtons from '@/components/list/recipe-buttons'
+import RecipeItem from '@/components/list/recipe-item'
 import Scroll from '@/mixins/scroll'
 import '@/components/list/recipe-list.scss'
 
@@ -53,6 +54,13 @@ class RecipeList extends Scroll {
             onChange={ (layout) => this.setState({ layout: layout }) }
           />
           <div className="c-recipe-list__wrapper">
+            { this.state.items.map((recipe) => (
+              <RecipeItem
+                key={ recipe.id }
+                recipe={ recipe }
+                layout={ this.state.layout }
+              />
+            )) }
           </div>
         </div>
       )
