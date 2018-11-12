@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
+import RecipeList from '@/components/list/recipe-list'
 import UserDetails from '@/components/user/user-details'
 import requester from '@/hoc/requester'
 import { setUser } from '@/store/actions'
@@ -44,6 +45,10 @@ class UserPage extends React.Component {
               <h1 className="o-typography__header o-typography__header--list">
                 { this.$i18n.t('list.recipes') }
               </h1>
+              <RecipeList
+                userId={ this.state.userId }
+                type="user-recipes"
+              />
             </div>
           </div>
         </div>

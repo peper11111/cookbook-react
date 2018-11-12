@@ -1,0 +1,12 @@
+.c-recipe-list {
+  &__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -16px;
+  }
+
+  &__text {
+    margin-top: 16px;
+    text-align: center;
+  }
+}
