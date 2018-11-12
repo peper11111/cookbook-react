@@ -26,7 +26,10 @@ class RecipeItem extends React.Component {
           <div className="c-recipe-item__row">
             <span
               className="c-recipe-item__author"
-              onClick={ () => this.props.history.push(`/user/${this.props.recipe.author.id}`) }
+              onClick={ (event) => {
+                event.stopPropagation()
+                this.props.history.push(`/user/${this.props.recipe.author.id}`)
+              } }
             >
               { this.props.recipe.author.username }
             </span>
