@@ -1,5 +1,7 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import RecipeFilters from '@/components/list/recipe-filters'
+import RecipeList from '@/components/list/recipe-list'
 
 class HomePage extends React.Component {
   render () {
@@ -9,10 +11,20 @@ class HomePage extends React.Component {
           <div className="o-page__sidebar">
             <RecipeFilters/>
           </div>
+          <div className="o-page__container">
+            <RecipeList
+              userId={ this.props.authUser.id }
+              type="user-recommended"
+            />
+          </div>
         </div>
       </div>
     )
   }
 }
 
-export default HomePage
+const mapStateToProps = (state) => ({
+  authUser: state.auth.user
+})
+
+export default connect(mapStateToProps)(HomePage)
