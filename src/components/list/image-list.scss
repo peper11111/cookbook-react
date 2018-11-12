@@ -2,9 +2,11 @@
 @import '../../assets/styles/variables';
 
 .c-image-list {
-  display: flex;
-  flex-wrap: wrap;
-  align-content: flex-start;
+  &__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -16px;
+  }
 
   &__new {
     @include box-elevation;

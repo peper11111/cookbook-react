@@ -73,23 +73,25 @@ class ImageList extends Scroll {
           ref={ this.input }
           type="file"
         />
-        <div
-          className="c-image-list__new"
-          onClick={ () => this.triggerInput() }
-        >
-          <i className="material-icons">
-            add_circle_outline
-          </i>
+        <div className="c-image-list__wrapper">
+          <div
+            className="c-image-list__new"
+            onClick={ () => this.triggerInput() }
+          >
+            <i className="material-icons">
+              add_circle_outline
+            </i>
+          </div>
+          { this.state.items && this.state.items.map((image) => (
+            <ImageItem
+              key={ image.id }
+              image={ image }
+              selected={ this.props.value === image.id }
+              onSelect={ () => this.selectImage(image.id) }
+              onDelete={ () => this.deleteImage(image.id) }
+            />
+          )) }
         </div>
-        { this.state.items && this.state.items.map((image) => (
-          <ImageItem
-            key={ image.id }
-            image={ image }
-            selected={ this.props.value === image.id }
-            onSelect={ () => this.selectImage(image.id) }
-            onDelete={ () => this.deleteImage(image.id) }
-          />
-        )) }
       </div>
     )
   }
