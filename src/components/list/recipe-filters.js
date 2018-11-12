@@ -3,6 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import FormSelect from '@/components/form/form-select'
+import FormInput from '@/components/form/form-input'
 import RatingBar from '@/components/form/rating-bar'
 import Model from '@/mixins/model'
 import '@/components/list/recipe-filters.scss'
@@ -17,7 +18,9 @@ class RecipeFilters extends Model {
         cuisineId: null,
         categoryId: null,
         minDifficulty: null,
-        maxDifficulty: null
+        maxDifficulty: null,
+        minPlates: null,
+        maxPlates: null
       }
     }
   }
@@ -102,6 +105,27 @@ class RecipeFilters extends Model {
           <RatingBar
             value={ this.state.models.maxDifficulty }
             onChange={ (value) => this.setState({ models: { ...this.state.models, maxDifficulty: value } }) }
+          />
+        </div>
+        <div className="c-recipe-filters__header">
+          { this.$i18n.t('recipe.plates') }
+        </div>
+        <div className="c-recipe-filters__row">
+          <span className="c-recipe-filters__label">
+            { this.$i18n.t('global.from') }
+          </span>
+          <FormInput
+            value={ this.state.models.minPlates }
+            onChange={ (value) => this.setState({ models: { ...this.state.models, minPlates: value } }) }
+          />
+        </div>
+        <div className="c-recipe-filters__row">
+          <span className="c-recipe-filters__label">
+            { this.$i18n.t('global.to') }
+          </span>
+          <FormInput
+            value={ this.state.models.maxPlates }
+            onChange={ (value) => this.setState({ models: { ...this.state.models, maxPlates: value } }) }
           />
         </div>
         <div className="c-recipe-filters__row c-recipe-filters__buttons">

@@ -14,7 +14,7 @@ class FormInput extends React.Component {
           className={ `o-form__input ${this.props.className}` }
           maxLength={ this.props.maxlength || 255 }
           placeholder={ this.props.placeholder }
-          value={ this.props.value }
+          value={ this.props.value || '' }
           onChange={ (event) => this.props.onChange(event.target.value) }
         />
       )
