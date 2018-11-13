@@ -60,12 +60,8 @@ class UserPage extends Requester {
   }
 }
 
-const mapStateToProps = (state) => ({
-  user: state.user
-})
-
 const mapDispatchToProps = (dispatch) => ({
   dispatchSetUser: (user) => dispatch(setUser(user))
 })
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserPage))
+export default withRouter(connect(null, mapDispatchToProps)(UserPage))

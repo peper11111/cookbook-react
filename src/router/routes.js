@@ -5,6 +5,7 @@ const ExplorePage = lazyLoad(() => import('@/pages/explore-page'))
 const FavouritePage = lazyLoad(() => import('@/pages/favourite-page'))
 const SearchPage = lazyLoad(() => import('@/pages/search-page'))
 const UserPage = lazyLoad(() => import('@/pages/user-page'))
+const RecipePage = lazyLoad(() => import('@/pages/recipe-page'))
 const SignInPage = lazyLoad(() => import('@/pages/intro/sign-in-page'))
 const RegisterPage = lazyLoad(() => import('@/pages/intro/register-page'))
 const RegisterVerifyPage = lazyLoad(() => import('@/pages/intro/register-verify-page'))
@@ -35,6 +36,11 @@ export default [
   {
     path: '/user/:id',
     component: UserPage,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/recipe/:id',
+    component: RecipePage,
     meta: { requiresAuth: true }
   },
   {
