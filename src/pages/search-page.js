@@ -1,6 +1,8 @@
 import React from 'react'
-import RecipeList from '@/components/list/recipe-list'
-import UserList from '@/components/list/user-list'
+import lazyLoad from '@/lazyLoad'
+
+const RecipeList = lazyLoad(() => import('@/components/list/recipe-list'))
+const UserList = lazyLoad(() => import('@/components/list/user-list'))
 
 class SearchPage extends React.Component {
   render () {

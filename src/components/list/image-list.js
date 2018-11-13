@@ -1,9 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import ImageItem from '@/components/list/image-item'
 import config from '@/config'
+import lazyLoad from '@/lazyLoad'
 import Scroll from '@/mixins/scroll'
 import '@/components/list/image-list.scss'
+
+const ImageItem = lazyLoad(() => import('@/components/list/image-item'))
 
 class ImageList extends Scroll {
   constructor (props) {

@@ -2,12 +2,14 @@ import queryString from 'query-string'
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import FormSelect from '@/components/form/form-select'
-import FormInput from '@/components/form/form-input'
-import RatingBar from '@/components/form/rating-bar'
-import TimeInput from '@/components/form/time-input'
+import lazyLoad from '@/lazyLoad'
 import Model from '@/mixins/model'
 import '@/components/list/recipe-filters.scss'
+
+const FormSelect = lazyLoad(() => import('@/components/form/form-select'))
+const FormInput = lazyLoad(() => import('@/components/form/form-input'))
+const RatingBar = lazyLoad(() => import('@/components/form/rating-bar'))
+const TimeInput = lazyLoad(() => import('@/components/form/time-input'))
 
 class RecipeFilters extends Model {
   constructor (props) {

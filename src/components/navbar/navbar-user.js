@@ -1,11 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
-import AppDropdown from '@/components/app-dropdown'
 import config from '@/config'
+import lazyLoad from '@/lazyLoad'
 import Requester from '@/mixins/requester'
 import { signOut } from '@/store/actions'
 import '@/components/navbar/navbar-user.scss'
+
+const AppDropdown = lazyLoad(() => import('@/components/app-dropdown'))
 
 class NavbarUser extends Requester {
   constructor (props) {

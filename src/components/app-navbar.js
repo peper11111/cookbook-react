@@ -1,8 +1,10 @@
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
-import NavbarSearch from '@/components/navbar/navbar-search'
-import NavbarUser from '@/components/navbar/navbar-user'
+import lazyLoad from '@/lazyLoad'
 import '@/components/app-navbar.scss'
+
+const NavbarSearch = lazyLoad(() => import('@/components/navbar/navbar-search'))
+const NavbarUser = lazyLoad(() => import('@/components/navbar/navbar-user'))
 
 class AppNavbar extends React.Component {
   isActive (pathname) {

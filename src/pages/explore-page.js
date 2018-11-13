@@ -1,6 +1,8 @@
 import React from 'react'
-import RecipeFilters from '@/components/list/recipe-filters'
-import RecipeList from '@/components/list/recipe-list'
+import lazyLoad from '@/lazyLoad'
+
+const RecipeFilters = lazyLoad(() => import('@/components/list/recipe-filters'))
+const RecipeList = lazyLoad(() => import('@/components/list/recipe-list'))
 
 class ExplorePage extends React.Component {
   render () {

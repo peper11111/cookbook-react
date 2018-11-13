@@ -1,9 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
+import lazyLoad from '@/lazyLoad'
 import RouterView from '@/router'
-import AppNavbar from '@/components/app-navbar'
 import Requester from '@/mixins/requester'
+
+const AppNavbar = lazyLoad(() => import('@/components/app-navbar'))
 
 class App extends Requester {
   componentDidMount () {

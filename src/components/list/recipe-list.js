@@ -1,10 +1,12 @@
 import queryString from 'query-string'
 import React from 'react'
 import { withRouter } from 'react-router-dom'
-import RecipeButtons from '@/components/list/recipe-buttons'
-import RecipeItem from '@/components/list/recipe-item'
+import lazyLoad from '@/lazyLoad'
 import Scroll from '@/mixins/scroll'
 import '@/components/list/recipe-list.scss'
+
+const RecipeButtons = lazyLoad(() => import('@/components/list/recipe-buttons'))
+const RecipeItem = lazyLoad(() => import('@/components/list/recipe-item'))
 
 class RecipeList extends Scroll {
   constructor (props) {

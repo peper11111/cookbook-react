@@ -1,7 +1,9 @@
 import React from 'react'
-import AppModal from '@/components/app-modal'
-import ImageList from '@/components/list/image-list'
+import lazyLoad from '@/lazyLoad'
 import '@/components/form/image-picker.scss'
+
+const AppModal = lazyLoad(() => import('@/components/app-modal'))
+const ImageList = lazyLoad(() => import('@/components/list/image-list'))
 
 class ImagePicker extends React.Component {
   constructor (props) {

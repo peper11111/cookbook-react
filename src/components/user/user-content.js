@@ -1,10 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import FormInput from '@/components/form/form-input'
-import FormTextarea from '@/components/form/form-textarea'
+import lazyLoad from '@/lazyLoad'
 import Requester from '@/mixins/requester'
 import { setUser } from '@/store/actions'
 import '@/components/user/user-content.scss'
+
+const FormInput = lazyLoad(() => import('@/components/form/form-input'))
+const FormTextarea = lazyLoad(() => import('@/components/form/form-textarea'))
 
 class UserContent extends Requester {
   canPerformAction () {

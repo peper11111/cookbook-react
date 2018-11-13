@@ -1,10 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import RecipeList from '@/components/list/recipe-list'
-import UserDetails from '@/components/user/user-details'
+import lazyLoad from '@/lazyLoad'
 import Requester from '@/mixins/requester'
 import { setUser } from '@/store/actions'
+
+const RecipeList = lazyLoad(() => import('@/components/list/recipe-list'))
+const UserDetails = lazyLoad(() => import('@/components/user/user-details'))
 
 class UserPage extends Requester {
   constructor (props) {

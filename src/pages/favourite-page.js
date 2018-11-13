@@ -1,7 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import RecipeFilters from '@/components/list/recipe-filters'
-import RecipeList from '@/components/list/recipe-list'
+import lazyLoad from '@/lazyLoad'
+
+const RecipeFilters = lazyLoad(() => import('@/components/list/recipe-filters'))
+const RecipeList = lazyLoad(() => import('@/components/list/recipe-list'))
 
 class FavouritePage extends React.Component {
   render () {

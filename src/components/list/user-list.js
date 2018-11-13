@@ -1,9 +1,11 @@
 import queryString from 'query-string'
 import React from 'react'
 import { withRouter } from 'react-router-dom'
-import UserItem from '@/components/list/user-item'
+import lazyLoad from '@/lazyLoad'
 import Scroll from '@/mixins/scroll'
 import '@/components/list/user-list.scss'
+
+const UserItem = lazyLoad(() => import('@/components/list/user-item'))
 
 class UserList extends Scroll {
   constructor (props) {

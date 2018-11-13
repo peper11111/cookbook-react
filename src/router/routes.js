@@ -1,13 +1,15 @@
-import HomePage from '@/pages/home-page'
-import ExplorePage from '@/pages/explore-page'
-import FavouritePage from '@/pages/favourite-page'
-import SearchPage from '@/pages/search-page'
-import UserPage from '@/pages/user-page'
-import SignInPage from '@/pages/intro/sign-in-page'
-import RegisterPage from '@/pages/intro/register-page'
-import RegisterVerifyPage from '@/pages/intro/register-verify-page'
-import ResetPage from '@/pages/intro/reset-page'
-import ResetConfirmPage from '@/pages/intro/reset-confirm-page'
+import lazyLoad from '@/lazyLoad'
+
+const HomePage = lazyLoad(() => import('@/pages/home-page'))
+const ExplorePage = lazyLoad(() => import('@/pages/explore-page'))
+const FavouritePage = lazyLoad(() => import('@/pages/favourite-page'))
+const SearchPage = lazyLoad(() => import('@/pages/search-page'))
+const UserPage = lazyLoad(() => import('@/pages/user-page'))
+const SignInPage = lazyLoad(() => import('@/pages/intro/sign-in-page'))
+const RegisterPage = lazyLoad(() => import('@/pages/intro/register-page'))
+const RegisterVerifyPage = lazyLoad(() => import('@/pages/intro/register-verify-page'))
+const ResetPage = lazyLoad(() => import('@/pages/intro/reset-page'))
+const ResetConfirmPage = lazyLoad(() => import('@/pages/intro/reset-confirm-page'))
 
 export default [
   {

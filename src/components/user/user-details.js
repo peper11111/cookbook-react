@@ -1,12 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import config from '@/config'
-import DetailActions from '@/components/detail-actions'
-import ImagePicker from '@/components/form/image-picker'
-import UserContent from '@/components/user/user-content'
+import lazyLoad from '@/lazyLoad'
 import Editor from '@/mixins/editor'
 import { setUser } from '@/store/actions'
 import '@/components/user/user-details.scss'
+
+const DetailActions = lazyLoad(() => import('@/components/detail-actions'))
+const ImagePicker = lazyLoad(() => import('@/components/form/image-picker'))
+const UserContent = lazyLoad(() => import('@/components/user/user-content'))
 
 class UserDetails extends Editor {
   constructor (props) {
