@@ -15,7 +15,9 @@ class RecipeDetails extends Editor {
     this.state = {
       ...this.state,
       models: {
-        bannerId: null
+        bannerId: null,
+        title: null,
+        description: null
       }
     }
   }
