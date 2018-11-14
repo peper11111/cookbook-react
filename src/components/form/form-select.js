@@ -2,9 +2,10 @@ import React from 'react'
 
 class FormSelect extends React.Component {
   label () {
-    return this.props.options.find((option) => {
+    const selected = this.props.options.find((option) => {
       return this.isSelected(option)
-    }).label
+    })
+    return selected && selected.label
   }
   isSelected (option) {
     return String(option.value) === String(this.props.value)
