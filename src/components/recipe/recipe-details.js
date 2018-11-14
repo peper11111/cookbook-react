@@ -113,7 +113,7 @@ class RecipeDetails extends Editor {
               </h1>
               <StepList
                 disabled={ this.previewMode() }
-                value={ this.state.models.steps }
+                steps={ this.state.models.steps }
                 onChange={ (value) => this.setState({ models: { ...this.state.models, steps: value } }) }
               />
             </div>

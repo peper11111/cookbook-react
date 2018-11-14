@@ -1,0 +1,28 @@
+@import "../../assets/styles/variables";
+
+.c-step-item {
+  display: flex;
+  margin-bottom: 8px;
+  line-height: 24px;
+
+  &--center {
+    align-items: center;
+  }
+
+  &__index {
+    font-weight: bold;
+  }
+
+  &__label {
+    margin-left: 8px;
+    flex-grow: 1;
+  }
+
+  &__remove {
+    cursor: pointer;
+
+    &:hover {
+      color: $color-accent;
+    }
+  }
+}
