@@ -11,6 +11,7 @@ const DetailActions = lazyLoad(() => import('@/components/detail-actions'))
 const ImagePicker = lazyLoad(() => import('@/components/form/image-picker'))
 const RecipeContent = lazyLoad(() => import('@/components/recipe/recipe-content'))
 const RecipeInfo = lazyLoad(() => import('@/components/recipe/recipe-info'))
+const StepList = lazyLoad(() => import('@/components/list/step-list'))
 
 class RecipeDetails extends Editor {
   constructor (props) {
@@ -25,7 +26,8 @@ class RecipeDetails extends Editor {
         categoryId: null,
         difficulty: null,
         plates: null,
-        preparationTime: null
+        preparationTime: null,
+        steps: null
       }
     }
   }
@@ -109,6 +111,11 @@ class RecipeDetails extends Editor {
               <h1 className="c-recipe-details__title">
                 { this.$i18n.t('recipe.steps') }
               </h1>
+              <StepList
+                disabled={ this.previewMode() }
+                value={ this.state.models.steps }
+                onChange={ (value) => this.setState({ models: { ...this.state.models, steps: value } }) }
+              />
             </div>
             <div className="c-recipe-details__info">
               <h1 className="c-recipe-details__title">
