@@ -3,8 +3,10 @@ import { connect } from 'react-redux'
 import lazyLoad from '@/lazyLoad'
 import '@/components/recipe/recipe-info.scss'
 
+const FormInput = lazyLoad(() => import('@/components/form/form-input'))
 const FormSelect = lazyLoad(() => import('@/components/form/form-select'))
 const RatingBar = lazyLoad(() => import('@/components/form/rating-bar'))
+const TimeInput = lazyLoad(() => import('@/components/form/time-input'))
 
 class RecipeInfo extends React.Component {
   cuisines () {
@@ -59,6 +61,28 @@ class RecipeInfo extends React.Component {
             disabled={ this.props.previewMode }
             value={ this.props.models.difficulty }
             onChange={ (value) => this.props.onChange({ difficulty: value }) }
+          />
+        </div>
+        <div className="c-recipe-info__item">
+          <span className="c-recipe-info__label">
+            { this.$i18n.t('recipe.plates') }
+          </span>
+          <FormInput
+            className="c-recipe-info__value"
+            disabled={ this.props.previewMode }
+            value={ this.props.models.plates }
+            onChange={ (value) => this.props.onChange({ plates: value }) }
+          />
+        </div>
+        <div className="c-recipe-info__item">
+          <span className="c-recipe-info__label">
+            { this.$i18n.t('recipe.preparation-time') }
+          </span>
+          <TimeInput
+            className="c-recipe-info__value"
+            disabled={ this.props.previewMode }
+            value={ this.props.models.preparationTime }
+            onChange={ (value) => this.props.onChange({ preparationTime: value }) }
           />
         </div>
       </div>

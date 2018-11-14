@@ -21,7 +21,9 @@ class RecipeDetails extends Editor {
         description: null,
         cuisineId: null,
         categoryId: null,
-        difficulty: null
+        difficulty: null,
+        plates: null,
+        preparationTime: null
       }
     }
   }

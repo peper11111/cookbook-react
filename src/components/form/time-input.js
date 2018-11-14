@@ -65,13 +65,13 @@ class TimeInput extends React.Component {
   render () {
     if (this.props.disabled) {
       return (
-        <div>
+        <div className={ this.props.className }>
           { this.text() }
         </div>
       )
     } else {
       return (
-        <div className="c-time-input">
+        <div className={ `c-time-input ${this.props.className}` }>
           <input
             value={ this.state.hours || '' }
             onChange={ (event) => this.setHours(event) }
