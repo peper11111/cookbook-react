@@ -19,13 +19,13 @@ class RatingBar extends React.Component {
     return val <= this.state.visibleValue
   }
   setVisibleValue (val) {
-    if (this.disabled) {
+    if (this.props.disabled) {
       return
     }
     this.setState({ visibleValue: val })
   }
   onClick (val) {
-    if (this.disabled) {
+    if (this.props.disabled) {
       return
     }
     this.props.onChange(val !== this.props.value ? val : null)
@@ -33,7 +33,7 @@ class RatingBar extends React.Component {
   render () {
     return (
       <div
-        className={ `c-rating-bar ${this.props.disabled ? 'is-disabled' : ''}` }
+        className={ `c-rating-bar ${this.props.className} ${this.props.disabled ? 'is-disabled' : ''}` }
         onMouseLeave={ () => this.setVisibleValue(this.props.value) }
       >
         { [...Array(this.props.size || 5).keys()].map((i) => i + 1).map((i) => (

@@ -4,6 +4,7 @@ import lazyLoad from '@/lazyLoad'
 import '@/components/recipe/recipe-info.scss'
 
 const FormSelect = lazyLoad(() => import('@/components/form/form-select'))
+const RatingBar = lazyLoad(() => import('@/components/form/rating-bar'))
 
 class RecipeInfo extends React.Component {
   cuisines () {
@@ -47,6 +48,17 @@ class RecipeInfo extends React.Component {
             disabled={ this.props.previewMode }
             value={ this.props.models.categoryId }
             onChange={ (value) => this.props.onChange({ categoryId: value }) }
+          />
+        </div>
+        <div className="c-recipe-info__item">
+          <span className="c-recipe-info__label">
+            { this.$i18n.t('recipe.difficulty') }
+          </span>
+          <RatingBar
+            className="c-recipe-info__value"
+            disabled={ this.props.previewMode }
+            value={ this.props.models.difficulty }
+            onChange={ (value) => this.props.onChange({ difficulty: value }) }
           />
         </div>
       </div>
