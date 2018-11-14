@@ -1,8 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
+import lazyLoad from '@/lazyLoad'
 import Requseter from '@/mixins/requester'
 import { setRecipe } from '@/store/actions'
+
+const RecipeDetails = lazyLoad(() => import('@/components/recipe/recipe-details'))
 
 class RecipePage extends Requseter {
   constructor (props) {
@@ -35,7 +38,9 @@ class RecipePage extends Requseter {
     if (!this.state.pending) {
       return (
         <div className="o-page">
-          <div className="o-page__wrapper"/>
+          <div className="o-page__wrapper">
+            <RecipeDetails/>
+          </div>
         </div>
       )
     } else {
