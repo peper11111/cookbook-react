@@ -1,8 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import config from '@/config'
 import lazyLoad from '@/lazyLoad'
 import Editor from '@/mixins/editor'
+import { setRecipe } from '@/store/actions'
 import '@/components/recipe/recipe-details.scss'
 
 const DetailActions = lazyLoad(() => import('@/components/detail-actions'))
@@ -32,6 +34,39 @@ class RecipeDetails extends Editor {
   }
   isAuthor () {
     return this.props.recipe.author.id === this.props.authUser.id
+  }
+  create (params) {
+    this.removeEmptyValues(params)
+    return this.$api.recipes.create(params).then((value) => {
+      this.$notify.success('recipe-create-successful')
+      this.props.history.push(`/recipe/${value.data}`)
+    })
+  }
+  modify (params) {
+    this.removeEmptyValues(params)
+    return this.$api.recipes.modify(this.props.recipe.id, params).then(() => {
+      return this.$api.recipes.read(this.props.recipe.id)
+    }).then((value) => {
+      this.props.dispatchSetRecipe(value.data)
+      this.$notify.success('recipe-update-successful')
+    })
+  }
+  delete () {
+    if (!window.confirm(this.$i18n.t('recipe.recipe-delete'))) {
+      return Promise.resolve()
+    }
+    return this.$api.recipes.delete(this.props.recipe.id).then(() => {
+      this.$notify.success('recipe-delete-successful')
+      this.props.history.push(`/user/${this.props.recipe.author.id}`)
+    })
+  }
+  removeEmptyValues (params) {
+    if (params.ingredients) {
+      params.ingredients = params.ingredients.filter((ingredient) => ingredient !== '')
+    }
+    if (params.steps) {
+      params.steps = params.steps.filter((step) => step !== '')
+    }
   }
   render () {
     return (
@@ -68,6 +103,19 @@ class RecipeDetails extends Editor {
               className="c-recipe-details__info"
             />
           </div>
+          <div className="o-page__separator"/>
+          <div className="c-recipe-details__row">
+            <div className="c-recipe-details__content">
+              <h1 className="c-recipe-details__title">
+                { this.$i18n.t('recipe.steps') }
+              </h1>
+            </div>
+            <div className="c-recipe-details__info">
+              <h1 className="c-recipe-details__title">
+                { this.$i18n.t('recipe.ingredients') }
+              </h1>
+            </div>
+          </div>
         </div>
       </div>
     )
@@ -79,4 +127,8 @@ const mapStateToProps = (state) => ({
   recipe: state.recipe
 })
 
-export default connect(mapStateToProps)(RecipeDetails)
+const mapDispatchToProps = (dispatch) => ({
+  dispatchSetRecipe: (recipe) => dispatch(setRecipe(recipe))
+})
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(RecipeDetails))
