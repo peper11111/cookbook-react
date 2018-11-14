@@ -79,16 +79,16 @@ class RecipeFilters extends Model {
           { this.$i18n.t('recipe.cuisine-type') }
         </div>
         <FormSelect
-          value={ this.state.models.cuisineId }
           options={ this.cuisines() }
+          value={ this.state.models.cuisineId }
           onChange={ (value) => this.setState({ models: { ...this.state.models, cuisineId: value } }) }
         />
         <div className="c-recipe-filters__header">
           { this.$i18n.t('recipe.category-type') }
         </div>
         <FormSelect
-          value={ this.state.models.categoryId }
           options={ this.categories() }
+          value={ this.state.models.categoryId }
           onChange={ (value) => this.setState({ models: { ...this.state.models, categoryId: value } }) }
         />
         <div className="c-recipe-filters__header">

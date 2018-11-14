@@ -1,0 +1,20 @@
+.c-recipe-info {
+  display: flex;
+  flex-direction: column;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
+  &__label {
+    font-weight: bold;
+    white-space: nowrap;
+    width: 140px;
+  }
+
+  &__value {
+    width: 160px;
+  }
+}

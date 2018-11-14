@@ -8,6 +8,7 @@ import '@/components/recipe/recipe-details.scss'
 const DetailActions = lazyLoad(() => import('@/components/detail-actions'))
 const ImagePicker = lazyLoad(() => import('@/components/form/image-picker'))
 const RecipeContent = lazyLoad(() => import('@/components/recipe/recipe-content'))
+const RecipeInfo = lazyLoad(() => import('@/components/recipe/recipe-info'))
 
 class RecipeDetails extends Editor {
   constructor (props) {
@@ -17,7 +18,9 @@ class RecipeDetails extends Editor {
       models: {
         bannerId: null,
         title: null,
-        description: null
+        description: null,
+        cuisineId: null,
+        categoryId: null
       }
     }
   }
@@ -54,6 +57,12 @@ class RecipeDetails extends Editor {
               createMode={ this.createMode() }
               previewMode={ this.previewMode() }
               className="c-recipe-details__content"
+            />
+            <RecipeInfo
+              models={ this.state.models }
+              onChange={ (models) => this.setState({ models: { ...this.state.models, ...models } }) }
+              previewMode={ this.previewMode() }
+              className="c-recipe-details__info"
             />
           </div>
         </div>

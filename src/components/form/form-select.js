@@ -15,7 +15,7 @@ class FormSelect extends React.Component {
   render () {
     if (this.props.disabled) {
       return (
-        <div>
+        <div className={ this.props.className }>
           { this.label() }
         </div>
       )
@@ -23,7 +23,7 @@ class FormSelect extends React.Component {
       return (
         <select
           onChange={ (event) => this.onChange(event) }
-          className="o-form__select"
+          className={ `o-form__select ${this.props.className}` }
           value={ this.props.value || '' }
         >
           <option value=""/>
