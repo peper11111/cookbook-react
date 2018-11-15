@@ -9,6 +9,7 @@ import '@/components/recipe/recipe-details.scss'
 
 const DetailActions = lazyLoad(() => import('@/components/detail-actions'))
 const ImagePicker = lazyLoad(() => import('@/components/form/image-picker'))
+const IngredientList = lazyLoad(() => import('@/components/list/ingredient-list'))
 const RecipeContent = lazyLoad(() => import('@/components/recipe/recipe-content'))
 const RecipeInfo = lazyLoad(() => import('@/components/recipe/recipe-info'))
 const StepList = lazyLoad(() => import('@/components/list/step-list'))
@@ -27,7 +28,8 @@ class RecipeDetails extends Editor {
         difficulty: null,
         plates: null,
         preparationTime: null,
-        steps: null
+        steps: null,
+        ingredients: null
       }
     }
   }
@@ -121,6 +123,11 @@ class RecipeDetails extends Editor {
               <h1 className="c-recipe-details__title">
                 { this.$i18n.t('recipe.ingredients') }
               </h1>
+              <IngredientList
+                disabled={ this.previewMode() }
+                ingredients={ this.state.models.ingredients }
+                onChange={ (value) => this.setState({ models: { ...this.state.models, ingredients: value } }) }
+              />
             </div>
           </div>
         </div>

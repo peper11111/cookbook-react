@@ -1,0 +1,21 @@
+@import '../../assets/styles/variables';
+
+.c-ingredient-list {
+  display: flex;
+  flex-direction: column;
+
+  &__add {
+    display: flex;
+    line-height: 24px;
+    cursor: pointer;
+    color: $color-text-secondary;
+
+    &:hover {
+      color: $color-accent;
+    }
+  }
+
+  &__text {
+    margin-left: 8px;
+  }
+}
