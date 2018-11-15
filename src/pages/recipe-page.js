@@ -40,6 +40,12 @@ class RecipePage extends Requester {
         <div className="o-page">
           <div className="o-page__wrapper">
             <RecipeDetails/>
+            <div className="o-page__separator"/>
+            <div className="o-page__container">
+              <h1 className="o-typography__header">
+                { this.$i18n.t('recipe.comments') }
+              </h1>
+            </div>
           </div>
         </div>
       )
