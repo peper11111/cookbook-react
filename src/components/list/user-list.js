@@ -35,19 +35,32 @@ class UserList extends Scroll {
     }
   }
   render () {
-    return (
-      <div
-        className="c-user-list"
-        ref={ this.el }
-      >
-        { this.state.items.map((user) => (
-          <UserItem
-            key={ user.id }
-            user={ user }
-          />
-        )) }
-      </div>
-    )
+    if (this.state.items.length !== 0) {
+      return (
+        <div
+          className="c-user-list"
+          ref={ this.el }
+        >
+          <div className="c-user-list__wrapper">
+            { this.state.items.map((user) => (
+              <UserItem
+                key={ user.id }
+                user={ user }
+              />
+            )) }
+          </div>
+        </div>
+      )
+    } else {
+      return (
+        <div
+          className="c-user-list__text"
+          ref={ this.el }
+        >
+          { this.$i18n.t('list.no-users') }
+        </div>
+      )
+    }
   }
 }
 

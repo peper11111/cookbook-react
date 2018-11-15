@@ -10,7 +10,13 @@ class SearchPage extends React.Component {
       <div className="o-page">
         <div className="o-page__wrapper o-page__wrapper--list">
           <div className="o-page__container">
+            <h1 className="o-typography__header o-typography__header--search">
+              { this.$i18n.t('user.found') }
+            </h1>
             <UserList type="users-search"/>
+            <h1 className="o-typography__header o-typography__header--search">
+              { this.$i18n.t('recipe.found') }
+            </h1>
             <RecipeList type="recipes-search"/>
           </div>
         </div>

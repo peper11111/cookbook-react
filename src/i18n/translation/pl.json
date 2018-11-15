@@ -97,6 +97,7 @@
   "list": {
     "recipes": "Przepisy",
     "no-recipes": "Brak przepisów do wyświetlenia",
+    "no-users": "Brak użytkowników do wyświetlenia",
     "images": "Obrazy",
     "image-delete": "Czy napewno chcesz usunąć ten obrazek?",
     "add-ingredient": "Dodaj nowy składnik",
@@ -111,7 +112,8 @@
     "followers": "obserwujący",
     "followed": "obserwowanie",
     "follow": "Obserwuj",
-    "unfollow": "Przestań obserwować"
+    "unfollow": "Przestań obserwować",
+    "found": "Znalezieni użytkownicy"
   },
   "comment": {
     "show-responses": "Wyświetl {0} odpowiedzi",
@@ -124,6 +126,7 @@
       "title": "Podaj tytuł twojego przepisu",
       "description": "Krótko podsumuj czego dotyczyć będzie przepis"
     },
+    "found": "Znalezione przepisy",
     "filtering": "Filtrowanie",
     "filter": "Filtruj",
     "ingredients": "Składniki",
