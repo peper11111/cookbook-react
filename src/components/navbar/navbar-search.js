@@ -28,6 +28,11 @@ class NavbarSearch extends Model {
     return queryString.parse(this.state.search)
   }
   submit () {
+    const query = this.state.models.query || ''
+    if (!query || query.length < 3) {
+      this.$notify.error('query-too-short')
+      return
+    }
     this.props.history.push({
       pathname: '/search',
       search: queryString.stringify(this.getParams())

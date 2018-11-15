@@ -67,7 +67,8 @@
     "username-occupied": "Podana nazwa użytkownika jest już zajęta",
     "user-not-found": "Użytkownik nie istnieje",
     "user-is-disabled": "Użytkownik nie został aktywowany",
-    "file-exceeds-limit": "Plik nie może przekraczać 10MB"
+    "file-exceeds-limit": "Plik nie może przekraczać 10MB",
+    "query-too-short": "Podana fraza wyszukiwania jest zbyt krótka"
   },
   "navbar": {
     "profile": "Wyświetl profil",
