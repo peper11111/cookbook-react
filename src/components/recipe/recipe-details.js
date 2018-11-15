@@ -115,7 +115,7 @@ class RecipeDetails extends Editor {
               </h1>
               <StepList
                 disabled={ this.previewMode() }
-                steps={ this.state.models.steps }
+                steps={ this.state.models.steps || [] }
                 onChange={ (value) => this.setState({ models: { ...this.state.models, steps: value } }) }
               />
             </div>
@@ -125,7 +125,7 @@ class RecipeDetails extends Editor {
               </h1>
               <IngredientList
                 disabled={ this.previewMode() }
-                ingredients={ this.state.models.ingredients }
+                ingredients={ this.state.models.ingredients || [] }
                 onChange={ (value) => this.setState({ models: { ...this.state.models, ingredients: value } }) }
               />
             </div>
