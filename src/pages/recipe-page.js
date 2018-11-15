@@ -2,12 +2,12 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import lazyLoad from '@/lazyLoad'
-import Requseter from '@/mixins/requester'
+import Requester from '@/mixins/requester'
 import { setRecipe } from '@/store/actions'
 
 const RecipeDetails = lazyLoad(() => import('@/components/recipe/recipe-details'))
 
-class RecipePage extends Requseter {
+class RecipePage extends Requester {
   constructor (props) {
     super(props)
     this.state = {
