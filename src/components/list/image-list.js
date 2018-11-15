@@ -21,9 +21,9 @@ class ImageList extends Scroll {
         return Promise.resolve({ data: [] })
     }
   }
-  uploadImage (event) {
+  uploadImage () {
     this.wrap(() => {
-      const file = event.target.files[0]
+      const file = this.input.current.files[0]
       if (!file) {
         return Promise.resolve()
       }
@@ -31,7 +31,7 @@ class ImageList extends Scroll {
         this.$notify.error('file-exceeds-limit')
         return Promise.resolve()
       }
-      event.target.value = null
+      this.input.current.value = null
       const formData = new FormData()
       formData.set('file', file)
       return this.$api.uploads.create(formData).then(() => {
@@ -71,7 +71,7 @@ class ImageList extends Scroll {
         <input
           accept="image/*"
           className="u-hide"
-          onChange={ (event) => this.uploadImage(event) }
+          onChange={ () => this.uploadImage() }
           ref={ this.input }
           type="file"
         />
