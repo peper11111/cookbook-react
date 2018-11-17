@@ -1,4 +1,3 @@
-import queryString from 'query-string'
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import Requester from '@/mixins/requester'
@@ -9,7 +8,7 @@ class RegisterVerifyPage extends Requester {
   }
   registerVerify () {
     this.wrap(() => {
-      const query = queryString.parse(this.props.history.location.search)
+      const query = this.$helpers.parse(this.props.history.location.search)
       return this.$api.auth.registerVerify({
         uuid: query.uuid
       }).then(() => {

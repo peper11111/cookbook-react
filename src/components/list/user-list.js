@@ -1,4 +1,3 @@
-import queryString from 'query-string'
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import lazyLoad from '@/lazyLoad'
@@ -26,7 +25,7 @@ class UserList extends Scroll {
     }
   }
   getFetchMethod () {
-    const query = queryString.parse(this.state.search)
+    const query = this.$helpers.parse(this.state.search)
     switch (this.props.type) {
       case 'users-search':
         return this.$api.users.search({ ...query, page: this.state.page })

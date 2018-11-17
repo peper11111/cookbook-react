@@ -1,4 +1,3 @@
-import queryString from 'query-string'
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import Form from '@/mixins/form'
@@ -6,7 +5,7 @@ import Form from '@/mixins/form'
 class ResetConfirmPage extends Form {
   resetConfirm () {
     this.wrap(() => {
-      const query = queryString.parse(this.props.history.location.search)
+      const query = this.$helpers.parse(this.props.history.location.search)
       return this.$api.auth.resetConfirm({
         password: this.state.password,
         uuid: query.uuid

@@ -1,4 +1,3 @@
-import queryString from 'query-string'
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import lazyLoad from '@/lazyLoad'
@@ -28,7 +27,7 @@ class RecipeList extends Scroll {
     }
   }
   getFetchMethod () {
-    const query = queryString.parse(this.state.search)
+    const query = this.$helpers.parse(this.state.search)
     switch (this.props.type) {
       case 'recipes':
         return this.$api.recipes.readAll({ ...query, page: this.state.page })

@@ -1,4 +1,3 @@
-import queryString from 'query-string'
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import Model from '@/mixins/model'
@@ -25,7 +24,7 @@ class NavbarSearch extends Model {
     }
   }
   model () {
-    return queryString.parse(this.state.search)
+    return this.$helpers.parse(this.state.search)
   }
   submit () {
     const query = this.state.models.query || ''
@@ -35,7 +34,7 @@ class NavbarSearch extends Model {
     }
     this.props.history.push({
       pathname: '/search',
-      search: queryString.stringify(this.getParams())
+      search: this.$helpers.stringify(this.getParams())
     })
   }
   render () {

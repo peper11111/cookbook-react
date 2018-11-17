@@ -1,4 +1,3 @@
-import queryString from 'query-string'
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import Form from '@/mixins/form'
@@ -14,7 +13,7 @@ class SignInPage extends Form {
         return this.$helpers.fetchGlobalData()
       }).then(() => {
         this.$notify.success('sign-in-successful')
-        const query = queryString.parse(this.props.history.location.search)
+        const query = this.$helpers.parse(this.props.history.location.search)
         this.props.history.push(query.redirect || '/')
       })
     })

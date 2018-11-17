@@ -1,4 +1,3 @@
-import queryString from 'query-string'
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
@@ -39,7 +38,7 @@ class RecipeFilters extends Model {
     }
   }
   model () {
-    return queryString.parse(this.state.search)
+    return this.$helpers.parse(this.state.search)
   }
   cuisines () {
     return this.props.cuisines.map((cuisine) => {
@@ -66,7 +65,7 @@ class RecipeFilters extends Model {
   updateFiltering () {
     this.props.history.push({
       pathname: this.props.history.location.pathname,
-      search: queryString.stringify(this.getParams())
+      search: this.$helpers.stringify(this.getParams())
     })
   }
   render () {

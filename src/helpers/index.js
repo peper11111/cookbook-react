@@ -1,4 +1,4 @@
-import queryString from 'query-string'
+import qs from 'qs'
 import { matchPath } from 'react-router-dom'
 import api from '@/api'
 import config from '@/config'
@@ -14,7 +14,7 @@ export default {
     if (helpers.requiresAuth(history.location.pathname) && !store.getState().auth.loggedIn) {
       history.push({
         pathname: '/sign-in',
-        search: queryString.stringify({
+        search: helpers.stringify({
           redirect: history.location.pathname
         })
       })
@@ -26,6 +26,12 @@ export default {
       return match && match.isExact
     })
     return !!(matched && matched.meta && matched.meta.requiresAuth)
+  },
+  parse (str = '') {
+    return qs.parse(str.slice(1))
+  },
+  stringify (object = {}) {
+    return '?' + qs.stringify(object)
   },
   imageSrc (id) {
     return id ? `${config.baseURL}/uploads/${id}` : null
