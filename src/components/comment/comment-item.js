@@ -29,7 +29,7 @@ class CommentItem extends Editor {
     return this.props.comment.author.id === this.props.authUser.id
   }
   avatarSrc () {
-    return this.$helpers.thumbnailSrc(this.props.comment.avatarId) || config.blankAvatar
+    return this.$helpers.thumbnailSrc(this.props.comment.author.avatarId) || config.blankAvatar
   }
   creationTime () {
     return moment(this.props.comment.creationTime).fromNow()

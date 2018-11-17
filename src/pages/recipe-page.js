@@ -49,6 +49,7 @@ class RecipePage extends Requester {
               <CommentList
                 inputVisible={ true }
                 recipeId={ this.state.recipeId }
+                onCancel={ () => null }
                 type="recipe-comments"
               />
             </div>

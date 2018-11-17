@@ -4,6 +4,7 @@ import Scroll from '@/mixins/scroll'
 import '@/components/comment/comment-list.scss'
 
 const CommentItem = lazyLoad(() => import('@/components/comment/comment-item'))
+const CommentInput = lazyLoad(() => import('@/components/form/comment-input'))
 
 class CommentList extends Scroll {
   constructor (props) {
@@ -24,6 +25,10 @@ class CommentList extends Scroll {
         return Promise.resolve({ data: [] })
     }
   }
+  refreshComments () {
+    this.props.onCancel()
+    this.init()
+  }
   loadComments () {
     this.setState({
       toggleVisible: false
@@ -37,6 +42,14 @@ class CommentList extends Scroll {
         className="c-comment-list"
         ref={ this.el }
       >
+        { this.props.inputVisible &&
+          <CommentInput
+            parentId={ this.props.parentId }
+            recipeId={ this.props.recipeId }
+            onRefresh={ () => this.refreshComments() }
+            onCancel={ () => this.props.onCancel() }
+          />
+        }
         { this.state.toggleVisible &&
           <div
             className="c-comment-list__responses"
