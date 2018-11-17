@@ -1,6 +1,9 @@
 import React from 'react'
+import lazyLoad from '@/lazyLoad'
 import Scroll from '@/mixins/scroll'
 import '@/components/comment/comment-list.scss'
+
+const CommentItem = lazyLoad(() => import('@/components/comment/comment-item'))
 
 class CommentList extends Scroll {
   constructor (props) {
@@ -44,6 +47,16 @@ class CommentList extends Scroll {
             </span>
           </div>
         }
+        <div className="c-comment-list__wrapper">
+          { this.state.items.map((comment) => (
+            <CommentItem
+              comment={ comment }
+              key={ comment.id }
+              recipeId={ this.props.recipeId }
+              onRefresh={ () => this.init() }
+            />
+          )) }
+        </div>
       </div>
     )
   }
