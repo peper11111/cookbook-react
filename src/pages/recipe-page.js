@@ -5,6 +5,7 @@ import lazyLoad from '@/lazyLoad'
 import Requester from '@/mixins/requester'
 import { setRecipe } from '@/store/actions'
 
+const CommentList = lazyLoad(() => import('@/components/comment/comment-list'))
 const RecipeDetails = lazyLoad(() => import('@/components/recipe/recipe-details'))
 
 class RecipePage extends Requester {
@@ -45,6 +46,11 @@ class RecipePage extends Requester {
               <h1 className="o-typography__header">
                 { this.$i18n.t('recipe.comments') }
               </h1>
+              <CommentList
+                inputVisible={ true }
+                recipeId={ this.state.recipeId }
+                type="recipe-comments"
+              />
             </div>
           </div>
         </div>

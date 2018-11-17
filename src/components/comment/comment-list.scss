@@ -1,0 +1,14 @@
+.c-comment-list {
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__responses {
+    font-weight: bold;
+    padding: 8px 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+}

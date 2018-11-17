@@ -117,8 +117,7 @@
     "found": "Znalezieni użytkownicy"
   },
   "comment": {
-    "show-responses": "Wyświetl {0} odpowiedzi",
-    "hide-responses": "Ukryj odpowiedzi",
+    "load-responses": "Pokaż {{count}} odpowiedzi",
     "comment-delete": "Czy napewno chcesz usunąć ten komentarz?",
     "placeholder": "Dodaj nowy komentarz"
   },
