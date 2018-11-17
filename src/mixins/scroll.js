@@ -14,7 +14,9 @@ class Scroll extends Requester {
     this.onScroll = this.onScroll.bind(this)
   }
   componentDidMount () {
-    this.init()
+    if (this.props.autoInit || true) {
+      this.init()
+    }
     this.setState({ scrollParent: this.getScrollParent(this.el.current) }, () => {
       this.state.scrollParent.addEventListener('scroll', this.onScroll)
     })
