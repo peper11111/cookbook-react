@@ -1,11 +1,13 @@
 import moment from 'moment'
 import React from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import config from '@/config'
 import lazyLoad from '@/lazyLoad'
 import Editor from '@/mixins/editor'
 import '@/components/comment/comment-item.scss'
 
+const CommentActions = lazyLoad(() => import('@/components/comment/comment-actions'))
 const FormInput = lazyLoad(() => import('@/components/form/form-input'))
 
 class CommentItem extends Editor {
@@ -13,20 +15,38 @@ class CommentItem extends Editor {
     super(props)
     this.state = {
       ...this.state,
+      inputVisible: false,
       models: {
         content: null
       }
     }
   }
-
+  model () {
+    return this.props.comment
+  }
+  isAuthor () {
+    return this.props.comment.author.id === this.props.authUser.id
+  }
   avatarSrc () {
     return this.$helpers.thumbnailSrc(this.props.comment.avatarId) || config.blankAvatar
   }
   creationTime () {
     return moment(this.props.comment.creationTime).fromNow()
   }
-  model () {
-    return this.props.comment
+  modify (params) {
+    return this.$api.comments.modify(this.props.comment.id, params).then(() => {
+      this.$notify.success('comment-update-successful')
+      this.props.onRefresh()
+    })
+  }
+  delete () {
+    if (!window.confirm(this.$i18n.t('comment.comment-delete'))) {
+      return Promise.resolve()
+    }
+    return this.$api.comments.delete(this.props.comment.id).then(() => {
+      this.$notify.success('comment-delete-successful')
+      this.props.onRefresh()
+    })
   }
   render () {
     return (
@@ -54,10 +74,23 @@ class CommentItem extends Editor {
             value={ this.state.models.content }
             onChange={ (value) => this.setState({ models: { ...this.state.models, content: value } }) }
           />
+          <CommentActions
+            disabled={ this.state.pending }
+            canEdit={ this.isAuthor() }
+            canDelete={ this.isAuthor() }
+            editMode={ this.editMode() }
+            previewMode={ this.previewMode() }
+            onAction={ (type) => this.onAction(type) }
+            onReply={ () => this.setState({ inputVisible: true })}
+          />
         </div>
       </div>
     )
   }
 }
 
-export default CommentItem
+const mapStateToProps = (state) => ({
+  authUser: state.auth.user
+})
+
+export default connect(mapStateToProps)(CommentItem)

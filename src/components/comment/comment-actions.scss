@@ -1,0 +1,17 @@
+@import "../../assets/styles/variables";
+
+.c-comment-actions {
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+
+  &__item {
+    color: $color-text-secondary;
+    cursor: pointer;
+    margin-right: 8px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
