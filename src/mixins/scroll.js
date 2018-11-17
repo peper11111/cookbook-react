@@ -6,7 +6,7 @@ class Scroll extends Requester {
     super(props)
     this.state = {
       ...this.state,
-      done: false,
+      done: true,
       items: [],
       page: 1,
       scrollParent: null
@@ -14,7 +14,7 @@ class Scroll extends Requester {
     this.onScroll = this.onScroll.bind(this)
   }
   componentDidMount () {
-    if (this.props.autoInit || true) {
+    if (this.props.autoInit === undefined || this.props.autoInit) {
       this.init()
     }
     this.setState({ scrollParent: this.getScrollParent(this.el.current) }, () => {

@@ -16,7 +16,7 @@ export default {
     read: (id) => http.get(`/comments/${id}`),
     modify: (id, data) => http.patch(`/comments/${id}`, data),
     delete: (id) => http.delete(`/comments/${id}`),
-    readComments: (id) => http.get(`/comments/${id}/comments`)
+    readComments: (id, params) => http.get(`/comments/${id}/comments`, { params: params })
   },
   cuisines: {
     readAll: () => http.get('/cuisines')

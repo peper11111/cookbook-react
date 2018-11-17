@@ -8,6 +8,7 @@ import Editor from '@/mixins/editor'
 import '@/components/comment/comment-item.scss'
 
 const CommentActions = lazyLoad(() => import('@/components/comment/comment-actions'))
+const CommentList = lazyLoad(() => import('@/components/comment/comment-list'))
 const FormInput = lazyLoad(() => import('@/components/form/form-input'))
 
 class CommentItem extends Editor {
@@ -82,6 +83,16 @@ class CommentItem extends Editor {
             previewMode={ this.previewMode() }
             onAction={ (type) => this.onAction(type) }
             onReply={ () => this.setState({ inputVisible: true })}
+          />
+          <CommentList
+            autoInit={ false }
+            inputVisible={ this.state.inputVisible }
+            showToggle={ this.props.comment.commentsCount !== 0 }
+            parentId={ this.props.comment.id }
+            commentsCount={ this.props.comment.commentsCount }
+            recipeId={ this.props.recipeId }
+            onCancel={ () => this.setState({ inputVisible: false }) }
+            type="comment-item"
           />
         </div>
       </div>

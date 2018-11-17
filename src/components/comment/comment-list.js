@@ -10,7 +10,7 @@ class CommentList extends Scroll {
     super(props)
     this.state = {
       ...this.state,
-      toggleVisible: this.state.showToggle
+      toggleVisible: this.props.showToggle
     }
     this.el = React.createRef()
   }
