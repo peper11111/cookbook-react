@@ -55,6 +55,7 @@
     "402": "Hasło musi zawierać minimum 8 znaków",
     "403": "Niepoprawny format adresu email",
     "404": "Podany adres email jest juz zajęty",
+    "410": "Treść komentarza nie może być pusta",
     "411": "Dodaj co najmniej jeden składnik",
     "412": "Dodaj co najmniej jeden krok",
     "missing-email": "Email nie może być pusty",
