@@ -60,14 +60,14 @@ class RecipeContent extends Requester {
           </div>
         }
         <FormInput
-          value={ this.props.models.title }
+          value={ this.props.models.title || '' }
           onChange={ (value) => this.props.onChange({ title: value }) }
           disabled={ this.props.previewMode }
           placeholder={ this.$i18n.t('recipe.placeholder.title') }
           className="c-recipe-content__title"
         />
         <FormTextarea
-          value={ this.props.models.description }
+          value={ this.props.models.description || '' }
           onChange={ (value) => this.props.onChange({ description: value }) }
           disabled={ this.props.previewMode }
           placeholder={ this.$i18n.t('recipe.placeholder.description') }
