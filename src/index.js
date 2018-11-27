@@ -9,7 +9,6 @@ import helpers from '@/helpers'
 import notify from '@/notify'
 import history from '@/router/history'
 import store from '@/store'
-import registerServiceWorker from '@/registerServiceWorker'
 import 'izitoast/dist/css/iziToast.css'
 import '@/assets/styles/index.scss'
 
@@ -28,4 +27,3 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 )
-registerServiceWorker()
